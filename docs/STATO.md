@@ -189,8 +189,16 @@ Messaggi arrivati in ordine inverso: la console tiene sempre lo stato più recen
 8. Niente testo di gioco sotto i 28px a 1080p: ✔ in tutte le schermate (anche a 1280×800).
 - SPEC-v2: tocchi 0-3 nei titoli con la frase giusta ✔; Avanti in atto 1 = manifestazione senza cambiare fase ✔.
 
+### Pubblicazione (26/10/2026)
+- Repository pubblico **Ghegg3r/lanterna-1030** (nome anonimo apposta), ramo `main`; GitHub Pages su `main` / root.
+- App: https://ghegg3r.github.io/lanterna-1030/ — console: `…/regia.html#<codice>` (il link completo è nel pannello).
+- `url_pubblico` impostato. `.gitignore` esclude `.claude/` e `docs/riferimenti/` (codice di un altro progetto).
+- Provato su Chrome via https: service worker attivo, 48 file in cache, cifratura disponibile, schermo e console collegati sul canale, Avanti dal telefono fa cadere la Morte; console pulita (a parte i 404 degli audio che mancano).
+- Per aggiornare il sito: modificare i file, poi `git add -A`, `git commit -m "…"`, `git push`. Pages si aggiorna in un paio di minuti.
+- Attenzione: essendo pubblico, `content/segreto.js` e `docs/STORIA.md` sono leggibili da chi trova il repository.
+
 ## Da fare
-Niente dei prompt. Da riempire: `url_pubblico` in `content/config.js` dopo aver pubblicato su GitHub Pages. Mancano gli audio (`docs/ASSETS.md`). Il 7 (regia dal telefono) ora è previsto, non facoltativo.
+Niente dei prompt. Mancano gli audio (`docs/ASSETS.md`). Il 7 (regia dal telefono) ora è previsto, non facoltativo.
 Per il Prompt 3: il modulo audio deve sostituire la durata stimata delle voci (`Stato.durataVoce`) con quella vera dei file, e usare `Schermo.audio()` (l'AudioContext sbloccato da "Inizia").
 
 ## Da provare a mano
