@@ -1,0 +1,203 @@
+/* Mezzanotte, la porta, il voto, il sigillo, il finale e i titoli. */
+
+/* --- Mezzanotte: dodici rintocchi, le carte si girano --- */
+#scena > .mezzanotte, #scena > .risveglio, #scena > .porta-scena, #scena > .sigillo,
+#scena > .finale-porta, #scena > .titoli {
+  position: fixed; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4vh;
+}
+.carte-mezzanotte { display: flex; gap: 1.2vh; perspective: 100vh; }
+.carta-gira {
+  position: relative; width: 9vh; height: 15.5vh; flex-shrink: 0;
+  transform-style: preserve-3d;
+  animation: gira 1.4s ease-in-out calc((var(--i) * 3.3 + 1.5 - var(--trascorso, 0)) * 1s) both;
+}
+@keyframes gira { from { transform: rotateY(0); } to { transform: rotateY(180deg); } }
+.carta-gira .retro, .carta-gira .fronte {
+  position: absolute; inset: 0; margin: 0; border-radius: 0.8vh; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+}
+.carta-gira .retro {
+  background:
+    radial-gradient(circle, rgba(226, 200, 142, 0.7) 0 0.11vh, transparent 0.16vh) 0 0 / 1.55vh 1.55vh,
+    radial-gradient(ellipse at 50% 50%, #1d1522 0%, #09060b 75%);
+  box-shadow: inset 0 0 0 0.45vh #09060b, inset 0 0 0 0.55vh rgba(184, 149, 90, 0.75);
+}
+.carta-gira .fronte { transform: rotateY(180deg); overflow: hidden; background: #efe2c2; }
+.carta-gira .fronte img { width: 100%; height: 100%; object-fit: cover; display: block; filter: sepia(0.3) brightness(0.85); }
+.carta-gira .fronte.disegnata { display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 1vh 0.3vh; color: #3a210c; font-family: var(--f-titoli); font-size: 1.6vh; text-align: center; }
+.testo-mezzanotte {
+  min-height: 2.6em; margin: 0 8vw; font-size: calc(var(--t-voce) * 1.2); text-align: center;
+  opacity: 0; transition: opacity 1.5s ease;
+}
+.testo-mezzanotte.visibile { opacity: 1; }
+.mezzanotte[data-passo="raccontate"] .testo-mezzanotte { color: var(--oro-chiaro); font-size: calc(var(--t-voce) * 1.6); }
+
+/* --- La porta --- */
+.porta { position: relative; width: 30vh; height: 48vh; --apertura: 0; flex-shrink: 0; }
+.porta .bagliore {
+  position: absolute; inset: -45% -80%; pointer-events: none;
+  background: radial-gradient(ellipse 40% 45% at 50% 55%, rgba(170, 200, 255, 0.55), transparent 70%);
+  opacity: calc(0.12 + var(--apertura) * 0.88); filter: blur(2vh);
+  transition: opacity 3.5s ease;
+  animation: respiro-porta 7s ease-in-out infinite alternate;
+}
+@keyframes respiro-porta { from { scale: 0.95; } to { scale: 1.05; } }
+.porta .cornice {
+  position: absolute; left: -2.4vh; right: -2.4vh; top: -3.4vh; bottom: 0;
+  background: linear-gradient(90deg, #2a2117 0%, #7d6440 30%, #a68a5b 50%, #7d6440 70%, #2a2117 100%);
+}
+.porta .arco { position: absolute; inset: 0; background: #04060b; perspective: 70vh; overflow: hidden; }
+.porta .luce {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 62%, #f6f9ff 0%, #b3caff 22%, rgba(70, 100, 170, 0.65) 52%, #04060b 88%);
+  opacity: calc(0.2 + var(--apertura) * 0.8); transition: opacity 3.5s ease;
+}
+.porta .anta {
+  position: absolute; top: 0; bottom: 0; width: 50%;
+  background:
+    linear-gradient(to bottom, transparent 22%, #0c0806 22%, #0c0806 24.5%, transparent 24.5%, transparent 72%, #0c0806 72%, #0c0806 74.5%, transparent 74.5%),
+    repeating-linear-gradient(90deg, #1c130c 0 2.2vh, #120c07 2.2vh 2.45vh),
+    #1c130c;
+  box-shadow: inset 0 0 2vh rgba(0, 0, 0, 0.8);
+  transition: transform 3.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.porta .anta::after {
+  /* borchie */
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(circle, rgba(184, 149, 90, 0.85) 0 0.28vh, transparent 0.38vh) 0 0 / 2.45vh 25%;
+  background-position: 1.1vh 23.2%;
+  opacity: 0.7;
+}
+.porta .anta.sinistra { left: 0; transform-origin: left center; transform: rotateY(calc(var(--apertura) * -78deg)); }
+.porta .anta.destra { right: 0; transform-origin: right center; transform: rotateY(calc(var(--apertura) * 78deg)); }
+.porta .anta.sinistra { animation: respira-anta 6s ease-in-out infinite alternate; }
+.porta .anta.destra { animation: respira-anta 6s -3s ease-in-out infinite alternate-reverse; }
+@keyframes respira-anta { from { rotate: y -1.2deg; } to { rotate: y 1.2deg; } }
+.porta .figura { display: none; }
+
+/* Risveglio: durante la voce 2 la porta affiora dal buio */
+.risveglio .porta { animation: affiora-porta 40s ease-in calc(var(--trascorso, 0) * -1s) both; }
+@keyframes affiora-porta { from { opacity: 0; } to { opacity: 0.85; } }
+
+/* --- Timer, round, righe --- */
+.porta-scena { gap: 3vh; }
+.porta-scena > :not(.cassetto):not(.apri-cassetto) { transition: filter 5s ease; }
+.porta-scena.scuro > :not(.cassetto):not(.apri-cassetto) { filter: brightness(0.3); }
+.alto-porta { display: flex; flex-direction: column; align-items: center; }
+.timer-porta {
+  font-family: var(--f-titoli); font-size: min(15vh, 12vw); line-height: 1; letter-spacing: 0.06em;
+  color: var(--avorio); font-variant-numeric: tabular-nums; text-shadow: 0 0 0.3em rgba(170, 200, 255, 0.25);
+  transition: color 2s ease;
+}
+.round { font-family: var(--f-titoli); font-size: var(--t-min); letter-spacing: 0.25em; color: var(--avorio-tenue); margin-top: 0.6vh; }
+.riga-porta {
+  min-height: 2.7em; max-width: 80vw; margin: 0; text-align: center; font-size: var(--t-voce); line-height: 1.3;
+  opacity: 0; transition: opacity 1.4s ease;
+}
+.riga-porta.visibile { opacity: 1; }
+.porta-scena .porta { height: 40vh; width: 25vh; }
+.voto .timer-porta, .ultimo-minuto .timer-porta { color: var(--cera-viva); text-shadow: 0 0 0.4em rgba(192, 57, 43, 0.5); }
+.ultimo-minuto .timer-porta { animation: pulsa 1s ease-in-out infinite; }
+@keyframes pulsa { 50% { opacity: 0.75; } }
+.voto .riga-porta { color: var(--oro-chiaro); }
+.pulsante-voto { margin-top: -1vh; }
+
+/* --- Cassetto laterale: fascicolo e Grimorio durante il timer --- */
+.apri-cassetto {
+  position: fixed; right: 0; top: 50%; translate: 0 -50%; z-index: 4;
+  writing-mode: vertical-rl; padding: 1.2em 0.5em;
+  font-family: var(--f-titoli); font-size: var(--t-min); letter-spacing: 0.1em; color: var(--oro-chiaro);
+  background: rgba(10, 7, 9, 0.85); border: 1px solid rgba(184, 149, 90, 0.5); border-right: none; border-radius: 0.6vh 0 0 0.6vh;
+}
+.cassetto {
+  position: fixed; top: 0; right: 0; bottom: 0; width: 66vw; z-index: 5;
+  display: flex; flex-direction: column; gap: 1vh; padding: 2vh 2vw; text-align: left;
+  background: #0b0809; border-left: 1px solid rgba(184, 149, 90, 0.5); box-shadow: -2vh 0 6vh rgba(0, 0, 0, 0.8);
+  transform: translateX(105%); transition: transform 0.6s ease;
+}
+.cassetto-aperto .cassetto { transform: none; }
+.cassetto .chiudi-cassetto { align-self: flex-end; }
+.cassetto .fascicolo { flex: 1; min-height: 0; }
+
+/* --- Sigillo: la griglia delle carte --- */
+.griglia-sigillo { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2.5vh 1.5vw; width: min(94vw, 170vh); }
+.carta-sigillo {
+  display: flex; flex-direction: column; align-items: center; gap: 0.8vh;
+  background: none; border: none; padding: 0; color: var(--avorio);
+}
+.carta-sigillo .faccia { margin: 0; height: 21vh; aspect-ratio: 600 / 1033; border-radius: 0.8vh; overflow: hidden; transition: transform 0.4s, box-shadow 0.4s; }
+.carta-sigillo .faccia img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.carta-sigillo .faccia.disegnata { background: #efe2c2; color: #3a210c; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 1vh 0.3vh; font-family: var(--f-titoli); }
+.carta-sigillo .nome-carta { font-family: var(--f-titoli); font-size: var(--t-min); line-height: 1.1; }
+.carta-sigillo.scelta .faccia { transform: scale(1.1); box-shadow: 0 0 0 0.4vh var(--oro-chiaro), 0 0 4vh rgba(226, 200, 142, 0.6); }
+.carta-sigillo.scelta .nome-carta { color: var(--oro-chiaro); }
+.conferma-sigillo { min-height: 1.3em; margin: 0; font-size: var(--t-voce); color: var(--oro-chiaro); }
+
+/* --- La porta si chiude di colpo, o si spalanca --- */
+.finale-porta .porta { width: 34vh; height: 54vh; }
+.finale-porta .anta { transition: none; }
+.finale-porta.sigillata .anta.sinistra { animation: chiudi-sx 0.45s cubic-bezier(0.7, 0, 1, 1) calc((0.6 - var(--trascorso, 0)) * 1s) both; }
+.finale-porta.sigillata .anta.destra { animation: chiudi-dx 0.45s cubic-bezier(0.7, 0, 1, 1) calc((0.6 - var(--trascorso, 0)) * 1s) both; }
+@keyframes chiudi-sx { from { transform: rotateY(calc(var(--apertura) * -78deg)); } to { transform: rotateY(0); } }
+@keyframes chiudi-dx { from { transform: rotateY(calc(var(--apertura) * 78deg)); } to { transform: rotateY(0); } }
+.finale-porta.sigillata .luce, .finale-porta.sigillata .bagliore { animation: spegni 1.2s ease-out calc((1 - var(--trascorso, 0)) * 1s) both; }
+@keyframes spegni { to { opacity: 0.04; } }
+.finale-porta.sigillata .porta { animation: scossa 0.6s linear calc((1.05 - var(--trascorso, 0)) * 1s) both; }
+@keyframes scossa {
+  0%, 100% { translate: 0 0; } 15% { translate: -1.2vh 0.4vh; } 30% { translate: 1vh -0.3vh; }
+  45% { translate: -0.6vh 0.2vh; } 60% { translate: 0.4vh 0; } 80% { translate: -0.2vh 0; }
+}
+/* il sigillo d'oro sulla fessura */
+.finale-porta.sigillata .arco::after {
+  content: ""; position: absolute; left: 50%; top: 18%; bottom: 6%; width: 0.4vh; margin-left: -0.2vh;
+  background: linear-gradient(to bottom, transparent, var(--oro-chiaro) 20%, var(--oro-chiaro) 80%, transparent);
+  box-shadow: 0 0 2vh var(--oro);
+  animation: sigilla 3s ease-out calc((1.2 - var(--trascorso, 0)) * 1s) both;
+}
+@keyframes sigilla { from { opacity: 0; transform: scaleY(0); } to { opacity: 1; transform: none; } }
+
+.finale-porta.attraversata .anta.sinistra { animation: spalanca-sx 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) calc((0.4 - var(--trascorso, 0)) * 1s) both; }
+.finale-porta.attraversata .anta.destra { animation: spalanca-dx 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) calc((0.4 - var(--trascorso, 0)) * 1s) both; }
+@keyframes spalanca-sx { from { transform: rotateY(calc(var(--apertura) * -78deg)); } to { transform: rotateY(-100deg); } }
+@keyframes spalanca-dx { from { transform: rotateY(calc(var(--apertura) * 78deg)); } to { transform: rotateY(100deg); } }
+.finale-porta.attraversata .luce { animation: abbaglia 2s ease-out calc((0.5 - var(--trascorso, 0)) * 1s) both; }
+@keyframes abbaglia { 0% { opacity: 0.6; filter: none; } 40% { opacity: 1; filter: brightness(2.2); } 100% { opacity: 1; filter: brightness(1.3); } }
+.finale-porta.attraversata .bagliore { animation: abbaglia 2s ease-out calc((0.5 - var(--trascorso, 0)) * 1s) both; }
+/* una figura scura che entra nella luce e svanisce */
+.finale-porta.attraversata .figura {
+  display: block; position: absolute; left: 50%; bottom: 0; width: 9vh; height: 26vh; margin-left: -4.5vh;
+  background:
+    radial-gradient(circle at 50% 12%, #000 0 2.6vh, transparent 2.8vh),
+    radial-gradient(ellipse 50% 42% at 50% 62%, #000 0 95%, transparent 100%);
+  filter: blur(0.25vh);
+  transform-origin: 50% 100%;
+  animation: attraversa 6s ease-in calc((1.4 - var(--trascorso, 0)) * 1s) both;
+}
+@keyframes attraversa {
+  0% { transform: translateY(20vh) scale(1.8); opacity: 0; }
+  12% { opacity: 1; }
+  70% { opacity: 0.9; }
+  100% { transform: translateY(-9vh) scale(0.25); opacity: 0; }
+}
+
+/* --- Titoli --- */
+.rivelato { display: flex; flex-direction: column; align-items: center; gap: 3vh; }
+.titoli[data-passo="crediti"] .rivelato { max-width: 40vw; }
+.titoli[data-passo="crediti"] .rivelazione { font-size: var(--t-voce); margin: 0; }
+.carta-titoli { margin: 0; height: 46vh; aspect-ratio: 600 / 1033; border-radius: 1vh; overflow: hidden; box-shadow: 0 0 6vh rgba(226, 200, 142, 0.25); transition: height 2s ease; animation: affiora 3s ease-out both; }
+.carta-titoli img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.carta-titoli.disegnata { background: #efe2c2; color: #3a210c; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 2vh; font-family: var(--f-titoli); font-size: var(--t-voce); }
+.rivelazione { margin: 0 6vw; font-family: var(--f-titoli); font-size: calc(var(--t-voce) * 1.05); color: var(--oro-chiaro); text-align: center; text-wrap: balance; animation: affiora 3s 1s ease-out both; }
+.titolo-confessione { display: none; margin: 0; font-size: var(--t-voce); color: var(--avorio-tenue); }
+.titoli[data-passo="confessione"] .titolo-confessione { display: block; animation: affiora 2s ease-out both; }
+.titoli[data-passo="confessione"] .carta-titoli { height: 34vh; filter: brightness(0.7); }
+.crediti { display: none; flex-direction: column; align-items: center; gap: 2.5vh; text-align: center; }
+#scena > .titoli[data-passo="crediti"] { flex-direction: row; gap: 6vw; padding: 0 5vw; }
+.titoli[data-passo="crediti"] .carta-titoli { height: 40vh; }
+.titoli[data-passo="crediti"] .crediti { display: flex; max-width: 50vw; }
+.riga-titoli { margin: 0; font-size: var(--t-voce); opacity: 0; transition: opacity 2.5s ease; }
+.riga-titoli.visibile { opacity: 1; }
+.riga-titoli.fine { font-family: var(--f-titoli); color: var(--oro-chiaro); letter-spacing: 0.08em; }
+.carta-morte { margin: 0; height: 22vh; aspect-ratio: 600 / 1033; border-radius: 0.8vh; overflow: hidden; transform-origin: 50% 100%; transform: rotate(-90deg) translateX(-30%); transition: transform 3s cubic-bezier(0.3, 0.1, 0.2, 1) 0.6s; }
+.carta-morte img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.morte-si-rialza.visibile .carta-morte { transform: none; }

@@ -1,0 +1,54 @@
+/* Console di regia sul telefono: scura, pulsanti grandi, usabile con una mano e al buio. */
+@font-face { font-family: "Cinzel"; src: url("../assets/font/cinzel.woff2") format("woff2"); font-weight: 400 900; font-display: swap; }
+
+:root {
+  --nero: #070509;
+  --pannello: #141013;
+  --bordo: rgba(184, 149, 90, 0.35);
+  --oro: #b8955a;
+  --oro-chiaro: #e2c88e;
+  --avorio: #ece1c6;
+  --tenue: #9a8f7a;
+  --rosso: #c0392b;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--nero); color: var(--avorio); font: 17px/1.35 system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-tap-highlight-color: transparent; }
+body { padding: max(12px, env(safe-area-inset-top)) 14px max(24px, env(safe-area-inset-bottom)); }
+[hidden] { display: none !important; }
+button, input { font: inherit; color: inherit; }
+button {
+  background: var(--pannello); border: 1px solid var(--bordo); border-radius: 12px;
+  padding: 14px 10px; min-height: 52px; touch-action: manipulation;
+}
+button:active { background: #241c1e; }
+button.attivo { background: var(--oro-chiaro); color: var(--nero); border-color: var(--oro-chiaro); }
+button.armato { border-color: var(--rosso); color: #ffb3a8; }
+.mini { min-height: 40px; padding: 8px 14px; }
+.pieno { width: 100%; }
+
+.accesso { display: flex; flex-direction: column; gap: 14px; margin-top: 20vh; }
+.accesso h1, .fase { font-family: "Cinzel", serif; font-weight: 400; color: var(--oro-chiaro); }
+.accesso input { padding: 14px; border-radius: 12px; border: 1px solid var(--bordo); background: var(--pannello); font-family: monospace; }
+
+.rete { background: var(--rosso); color: #fff; font-weight: 700; padding: 12px; border-radius: 12px; text-align: center; margin: 0 0 12px; font-size: 19px; }
+.testa { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.fase { margin: 0; font-size: 22px; }
+.tempo { margin: 2px 0 0; font-family: "Cinzel", serif; font-size: 40px; font-variant-numeric: tabular-nums; }
+.segnali { margin: 2px 0 0; font-weight: 700; color: #ffb3a8; min-height: 1.2em; }
+.tenue { color: var(--tenue); font-size: 14px; margin: 6px 0 10px; }
+.avviso { background: #3a2a0c; border: 1px solid var(--oro); padding: 10px 12px; border-radius: 10px; }
+
+.avanti {
+  width: 100%; min-height: 120px; margin: 8px 0 10px; font-size: 22px; font-weight: 700;
+  background: #2a1d10; border: 2px solid var(--oro); color: var(--oro-chiaro); border-radius: 18px;
+}
+.coppia { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.esito { min-height: 1.3em; color: var(--tenue); margin: 8px 0; }
+.esito.ko { color: #ffb3a8; }
+.etichetta { margin: 18px 0 8px; color: var(--oro); font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; }
+.griglia-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.griglia-4 button { font-size: 26px; font-weight: 700; }
+.griglia-carte, .griglia-fasi { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+details { margin-top: 22px; border-top: 1px solid var(--bordo); padding-top: 12px; }
+summary { color: var(--tenue); padding: 8px 0; }
+input[type="range"] { width: 100%; accent-color: var(--oro); }

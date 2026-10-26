@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#070509">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Regia</title>
+  <link rel="stylesheet" href="css/regia.css">
+</head>
+<body>
+  <form id="accesso" class="accesso" hidden autocomplete="off">
+    <h1 id="accesso-titolo"></h1>
+    <label for="codice" id="accesso-etichetta"></label>
+    <input id="codice" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+    <button id="entra"></button>
+    <p class="esito" id="accesso-esito"></p>
+  </form>
+
+  <div id="console" hidden>
+    <p id="rete" class="rete" hidden></p>
+    <header class="testa">
+      <div>
+        <p id="fase" class="fase"></p>
+        <p id="tempo" class="tempo"></p>
+        <p id="segnali" class="segnali"></p>
+      </div>
+      <div class="testa-dx">
+        <button id="verifica" class="mini"></button>
+      </div>
+    </header>
+    <p id="ultimo" class="tenue"></p>
+    <p id="avviso" class="avviso" hidden></p>
+
+    <main>
+      <button id="avanti" class="avanti"></button>
+      <div class="coppia">
+        <button id="pausa"></button>
+        <button id="velo"></button>
+      </div>
+      <p id="esito" class="esito"></p>
+
+      <section id="sezione-tocchi" hidden>
+        <p class="etichetta" id="titolo-tocchi"></p>
+        <div id="tocchi" class="griglia-4"></div>
+      </section>
+      <section id="sezione-sigillo" hidden>
+        <p class="etichetta" id="titolo-sigillo"></p>
+        <div id="carte" class="griglia-carte"></div>
+      </section>
+      <section id="sezione-confessione" hidden>
+        <button id="confessione" class="pieno"></button>
+      </section>
+
+      <details>
+        <summary id="titolo-altri"></summary>
+        <p class="etichetta" id="titolo-orologio"></p>
+        <div class="coppia" id="orologio"></div>
+        <p class="etichetta" id="titolo-volume"></p>
+        <input id="volume" type="range" min="0" max="1" step="0.05">
+        <p class="etichetta" id="titolo-salta"></p>
+        <div id="fasi" class="griglia-fasi"></div>
+      </details>
+    </main>
+  </div>
+
+  <script src="content/config.js"></script>
+  <script src="content/arcani.js"></script>
+  <script src="content/pannello.js"></script>
+  <script src="content/console.js"></script>
+  <script src="js/cripta.js"></script>
+  <script src="js/ponte.js"></script>
+  <script src="js/console.js"></script>
+</body>
+</html>
