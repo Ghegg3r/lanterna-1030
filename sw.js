@@ -25,7 +25,7 @@ const CODICE = [
   './', 'index.html', 'regia.html', 'sw.js',
   'css/stile.css', 'css/fascicolo.css', 'css/porta.css', 'css/regia.css',
   'content/config.js', 'content/arcani.js', 'content/testi.js', 'content/fascicolo.js',
-  'content/segreto.js', 'content/pannello.js', 'content/audio.js', 'content/console.js',
+  'content/segreto.js', 'content/pannello.js', 'content/audio.js', 'content/console.js', 'content/tempi-voci.js',
   'js/stato.js', 'js/regia.js', 'js/audio.js', 'js/schermo.js', 'js/rituale.js', 'js/delitto.js',
   'js/fascicolo.js', 'js/porta.js', 'js/finale.js', 'js/pannello.js', 'js/avvio.js',
   'js/cripta.js', 'js/ponte.js', 'js/collegamento.js', 'js/console.js'

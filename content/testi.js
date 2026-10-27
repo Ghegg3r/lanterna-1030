@@ -160,7 +160,7 @@ window.CONTENT_TESTI = {
     "righe": [
       { "testo": "La porta è aperta." },
       { "testo": "Grazie. Non avrei potuto farlo senza le vostre mani." },
-      { "testo": "{arcano} è passato, e ha portato con sé il confine." },
+      { "testo": "{arcano} ha attraversato, e ha portato con sé il confine." },
       { "testo": "Voi restate qui, a metà. Per sempre." },
       { "testo": "La lettera sul tavolo l'aveva scritta {arcano}. Vi ha chiesto aiuto, e glielo avete dato." }
     ]

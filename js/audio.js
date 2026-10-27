@@ -70,6 +70,9 @@
   // se ci sono per tutte le righe, altrimenti in proporzione alla lunghezza delle righe.
   function inizi(chiave, dur) {
     const r = VOCI[chiave].righe;
+    // Tempi misurati quando si sono generate le voci (content/tempi-voci.js), se valgono ancora per questi testi.
+    const misurati = window.CONTENT_TEMPI_VOCI && CONTENT_TEMPI_VOCI[chiave];
+    if (misurati && misurati.length === r.length && fileVoceOk(chiave)) return misurati.map(function (s) { return s * 1000; });
     if (r.every(function (x) { return typeof x.t === 'number'; })) return r.map(function (x) { return x.t * 1000; });
     const pesi = r.map(function (x) { return stimaRiga(x.testo); });
     const tot = pesi.reduce(function (a, b) { return a + b; }, 0);

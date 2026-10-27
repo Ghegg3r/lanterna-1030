@@ -45,7 +45,16 @@ Dal generatore di effetti sonori (descrizioni in inglese funzionano meglio) o da
 | `attraversamento.mp3` | 8 s | `strong wind sucked into a void, rising whoosh, then sudden silence` |
 | `battito.mp3` | 30-60 s, loop | `slow deep human heartbeat, loopable` |
 
-## 3. Voci degli spiriti
+## 3. Voci degli spiriti — FATTE (28/10)
+Generate con VoiceStudio (motore OmniVoice, in locale) e `strumenti/genera-voci.mjs`, effetto scelto: **"spirito"**.
+- Spiriti: voce `male, elderly, very low pitch`; confessione della Stella: `female, middle-aged, low pitch`. Velocità 0,78, seme 11.
+- Ogni riga è generata da sola, con 1,2 s di pausa tra le righe; i tempi esatti vanno in `content/tempi-voci.js` e l'app li usa per i sottotitoli.
+- Effetto: tono più basso (rubberband), eco che arriva prima delle parole (riverbero al contrario), riverbero di stanza in pietra, ombra un'ottava sotto, leggero ondeggiamento.
+- **Se cambi un testo delle voci**: apri VoiceStudio e rilancia, dalla cartella del progetto,
+  `node strumenti/genera-voci.mjs audio1` (o la voce che hai cambiato; senza nome le rifà tutte). Serve ffmpeg
+  (variabile `FFMPEG` con il percorso, se non è nel PATH).
+
+### Note sui testi (originali)
 Voce bassa, lenta, un po' di riverbero. I testi sono in `content/testi.js` (voci 1, 2, 3a, 3b)
 e in `content/segreto.js` (confessione). Una riga = una frase, con una pausa tra le righe.
 

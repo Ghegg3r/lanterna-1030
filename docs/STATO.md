@@ -205,7 +205,9 @@ L'utente ha aggiornato i PDF (00 Guida del master, 05 Schede, 06 Inserti e carte
 **Fatto nell'app**: nuova fase `giro` tra la voce 2 e la porta. Mostra "Aprite le vostre buste." per 6 s (`buste_s`), poi "Lo spirito passa tra voi." sopra la porta in penombra, con il bordone d'attesa basso. Il timer parte solo con Avanti (telecomando, pannello o telefono: "Avanti: parte il timer della porta"). La porta comincia direttamente con le presentazioni. Aggiornati `SERATA.md` e il test completo (66 su 66).
 
 ## Da fare
-Niente dei prompt. Mancano gli audio (`docs/AUDIO.md`): voci in corso con VoiceStudio (installato, motore OmniVoice su CUDA).
+Niente dei prompt.
+- **Voci: fatte** (28/10). Le 6 voci sono in `assets/audio/`, generate con VoiceStudio e `strumenti/genera-voci.mjs` (effetto "spirito", scelto dall'utente); tempi dei sottotitoli in `content/tempi-voci.js`, usati dall'app. Durate: voce 1 70 s, voce 2 124 s, 3a 30 s, 3b 28 s, confessioni 33/32 s. Test completo 66 su 66. Testo della 3b reso neutro: "{arcano} ha attraversato…" (prima "è passato", sbagliato con la Stella).
+- **Da fare**: musiche (Suno) ed effetti, vedi `docs/AUDIO.md`.
 
 ## Da provare a mano
 - Con il telecomando vero: quali tasti manda (PageDown/PageUp/B o altri). Se ne manda di diversi, si aggiungono in `js/regia.js`, funzione `tasto`.
