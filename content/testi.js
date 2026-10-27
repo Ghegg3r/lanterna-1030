@@ -48,6 +48,8 @@ window.CONTENT_TESTI = {
       { "testo": "Lui ha guardato. E chi guarda la Morte, stanotte, cade." },
       { "testo": "Non aprite le vostre buste. Non ancora." },
       { "testo": "Aprite soltanto la sua: lui non ne ha più bisogno." },
+      { "testo": "La Morte è caduta, ma non se n'è andata. Resterà con voi fino all'alba." },
+      { "testo": "Non può parlare, ma risponderà a chi la interroga. E ogni domanda ha un prezzo." },
       { "testo": "A mezzanotte entreremo in voi. Fino ad allora siete ancora voi stessi." },
       { "testo": "Usate quest'ora. Capite perché è caduto." },
       { "testo": "La risposta è nel 1986." }
@@ -116,7 +118,8 @@ window.CONTENT_TESTI = {
   },
 
   "porta": {
-    "round_iniziale": "Le presentazioni. Uno alla volta, dite chi siete.",
+    "giro_spirito": "Lo spirito passa tra voi.",
+    "round_iniziale": "Le presentazioni. Uno alla volta, dichiarate un arcano. Vero o falso, ma ditene uno.",
     // Nome del round, in piccolo sotto il timer. Chiave = minuti rimasti all'inizio del round.
     "round": {
       "60": "Presentazioni",

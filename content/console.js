@@ -17,6 +17,7 @@ window.CONTENT_CONSOLE = {
     "morte": "Avanti: la Morte cade",
     "manifestazione": "Avanti: manifestazione",
     "voce2": "Avanti: voce 2",
+    "timer": "Avanti: parte il timer della porta",
     "confessione": "Avanti: la confessione",
     "niente": "Avanti: niente in questa fase"
   },

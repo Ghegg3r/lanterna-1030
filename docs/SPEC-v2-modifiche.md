@@ -16,6 +16,7 @@ Questo file **prevale su `SPEC.md`** dove i due sono in conflitto. Il gioco è s
 - Il numero dei tocchi si salva nello stato e compare nei titoli finali ("Avevate {N} tocchi").
 
 ## 3. Atto 2
+- **Giro di mezzanotte (28/10).** Dopo "Aprite le vostre buste." e prima che parta il timer, schermata `testi.porta.giro_spirito` con musica bassa: il master passa dietro ogni giocatore a guardare la carta. Il timer parte quando il master preme Avanti.
 - Appena parte il timer: `testi.porta.round_iniziale` in grande per 15 secondi.
 - Le righe degli scatti ora annunciano i round (`testi.porta.scatti`). Durante ogni round, in piccolo sotto il timer, resta il nome del round: Presentazioni (60-50), Notte lunga (50-20), Accuse (20-10), Sigillo (10-0).
 - Al rintocco dei 30 minuti la musica cambia come prima. In più lo schermo si abbassa di luminosità per 60 secondi: è il momento in cui il master cammina tra i giocatori per i tocchi.

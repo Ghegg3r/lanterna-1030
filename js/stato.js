@@ -18,7 +18,7 @@
 
   const VERSIONE = 1;
   const FASI = ['avvio', 'attesa', 'verifica', 'sollievo', 'pesca', 'morte', 'atto1', 'mezzanotte',
-    'risveglio', 'porta', 'voto', 'sigillo', 'sigillata', 'attraversata', 'titoli'];
+    'risveglio', 'giro', 'porta', 'voto', 'sigillo', 'sigillata', 'attraversata', 'titoli'];
 
   const MIN = 60000;
   function minuti(hhmm) { const p = hhmm.split(':'); return (+p[0]) * 60 + (+p[1]); }
@@ -235,8 +235,9 @@
       if (stato.tocchiAl !== null && t - stato.tocchiAl < s(tp.tocchi_s)) return 'tocchi';
       return 'raccontate';
     }
-    if (f === 'porta' && trascorso('porta') < s(tp.buste_s)) return 'buste';
-    if (f === 'porta' && trascorso('porta') < s(tp.buste_s + tp.round_iniziale_s)) return 'round_iniziale';
+    // Giro di mezzanotte: prima "Aprite le vostre buste.", poi lo spirito passa tra i giocatori.
+    if (f === 'giro') return t < s(tp.buste_s) ? 'buste' : 'spirito';
+    if (f === 'porta' && trascorso('porta') < s(tp.round_iniziale_s)) return 'round_iniziale';
     if (f === 'titoli') return 'confessione_' + stato.confessione;
     return null;
   }
@@ -255,7 +256,7 @@
     const f = stato.fase, t = trascorso('fase');
     if (f === 'sollievo' && t >= s(C.tempi.sollievo_s)) return 'pesca';
     if ((f === 'morte' || f === 'atto1') && trascorso('orologio') >= DURATA_OROLOGIO) return 'mezzanotte';
-    if (f === 'risveglio' && t >= durataVoce('audio2')) return 'porta';
+    if (f === 'risveglio' && t >= durataVoce('audio2')) return 'giro';
     if ((f === 'porta' || f === 'voto') && rimanentePorta() <= 0) return 'attraversata';
     if (f === 'porta' && rimanentePorta() <= VOTO) return 'voto';
     if ((f === 'sigillata' || f === 'attraversata') && t >= s(C.tempi.voce_finale_dopo_s) + durataVoce(f)) return 'titoli';

@@ -1,5 +1,8 @@
 # File locali di Claude Code
 .claude/
 
+# Prove di voci e musiche, non vanno sul sito
+assets/audio/prove/
+
 # Codice di un altro progetto, usato solo come modello: resta sul PC, non si pubblica
 docs/riferimenti/

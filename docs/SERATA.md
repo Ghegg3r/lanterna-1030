@@ -34,8 +34,9 @@ Ogni pressione accende per un secondo un puntino quasi invisibile in basso a des
 | **Atto 1**: orologio, fascicolo, obiettivi | **Avanti** = manifestazione (prima di ogni visione) | Si può premere quante volte vuoi. |
 | Pausa cena | **Indietro** per fermare, **Indietro** per riprendere | L'orologio si ferma. |
 | **Mezzanotte** (24:00, da sola) | inserisci le **risposte giuste 0-3**: tastiera del PC (tasti 0-3), pannello o telefono | Senza tocchi, Avanti non fa niente (puntino rossastro). |
-| "Raccontate." | **Avanti** quando hanno finito | Parte la voce 2, poi "Aprite le vostre buste" e il timer di 60 minuti. |
-| **La porta**: timer e round | niente | Scatti ogni 10 minuti; al minuto 30 lo schermo si abbassa: è il momento dei tocchi. |
+| "Raccontate." | **Avanti** quando hanno finito | Parte la voce 2, poi "Aprite le vostre buste." |
+| **"Lo spirito passa tra voi."** | passa dietro ogni giocatore a guardare la carta, poi **Avanti** | Il timer di 60 minuti parte solo quando premi Avanti. |
+| **La porta**: timer e round | niente | Prima le presentazioni (ognuno dichiara un arcano). Scatti ogni 10 minuti; al minuto 30 lo schermo si abbassa: è il momento dei tocchi. |
 | **Voto** (da 10:00) | niente | I giocatori toccano "Abbiamo nominato qualcuno". |
 | **Sigillo**: le carte | tocca la carta girata, **due volte** (o dal telefono) | Se il timer arriva a 0 prima, la porta si spalanca da sola. |
 | Porta sigillata / attraversata | niente | La voce dice il nome del colpevole. |

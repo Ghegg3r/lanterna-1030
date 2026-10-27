@@ -134,6 +134,7 @@ window.CONTENT_PANNELLO = {
     "atto1": "Atto 1",
     "mezzanotte": "Mezzanotte",
     "risveglio": "Risveglio (voce 2)",
+    "giro": "Lo spirito passa tra voi",
     "porta": "La porta",
     "voto": "Il voto",
     "sigillo": "Il sigillo",

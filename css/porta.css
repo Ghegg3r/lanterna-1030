@@ -79,6 +79,19 @@
 .risveglio .porta { animation: affiora-porta 40s ease-in calc(var(--trascorso, 0) * -1s) both; }
 @keyframes affiora-porta { from { opacity: 0; } to { opacity: 0.85; } }
 
+/* Giro di mezzanotte: la porta in penombra, la frase dello spirito sotto */
+#scena > .giro {
+  position: fixed; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5vh;
+}
+.giro .porta { opacity: 0.55; filter: saturate(0.6); }
+.testo-giro {
+  min-height: 1.4em; margin: 0 8vw; text-align: center; font-size: calc(var(--t-voce) * 1.3);
+  opacity: 0; transition: opacity 1.8s ease;
+}
+.testo-giro.visibile { opacity: 1; }
+.giro[data-passo="spirito"] .testo-giro { color: var(--oro-chiaro); }
+
 /* --- Timer, round, righe --- */
 .porta-scena { gap: 3vh; }
 .porta-scena > :not(.cassetto):not(.apri-cassetto) { transition: filter 5s ease; }

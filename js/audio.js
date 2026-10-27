@@ -200,6 +200,9 @@
         des.ambiente = { id: 'atto1_loop' }; break;
       case 'risveglio':
         des.voce = { chiave: 'audio2', dal: 0 }; break;
+      case 'giro':
+        // musica bassa mentre lo spirito passa dietro ai giocatori
+        des.ambiente = { id: 'ambiente_attesa' }; break;
       case 'porta': case 'voto': case 'sigillo': {
         const meta = C.tempi.porta_min * 30000;
         des.musica = { id: Stato.rimanentePorta() > meta ? 'porta_A' : 'porta_B' };

@@ -197,9 +197,15 @@ Messaggi arrivati in ordine inverso: la console tiene sempre lo stato più recen
 - Per aggiornare il sito: modificare i file, poi `git add -A`, `git commit -m "…"`, `git push`. Pages si aggiorna in un paio di minuti.
 - Attenzione: essendo pubblico, `content/segreto.js` e `docs/STORIA.md` sono leggibili da chi trova il repository.
 
+### Bilanciamenti di gioco (28/10/2026)
+L'utente ha aggiornato i PDF (00 Guida del master, 05 Schede, 06 Inserti e carte, 07 Foglio d'indagine nuovo) e i testi:
+- voce 1 (blackout): due righe nuove, la Morte resta come spirito muto e ogni domanda ha un prezzo;
+- presentazioni: ognuno dichiara un arcano (`testi.porta.round_iniziale`);
+- giro di mezzanotte (`testi.porta.giro_spirito`, SPEC-v2 §3).
+**Fatto nell'app**: nuova fase `giro` tra la voce 2 e la porta. Mostra "Aprite le vostre buste." per 6 s (`buste_s`), poi "Lo spirito passa tra voi." sopra la porta in penombra, con il bordone d'attesa basso. Il timer parte solo con Avanti (telecomando, pannello o telefono: "Avanti: parte il timer della porta"). La porta comincia direttamente con le presentazioni. Aggiornati `SERATA.md` e il test completo (66 su 66).
+
 ## Da fare
-Niente dei prompt. Mancano gli audio (`docs/ASSETS.md`). Il 7 (regia dal telefono) ora è previsto, non facoltativo.
-Per il Prompt 3: il modulo audio deve sostituire la durata stimata delle voci (`Stato.durataVoce`) con quella vera dei file, e usare `Schermo.audio()` (l'AudioContext sbloccato da "Inizia").
+Niente dei prompt. Mancano gli audio (`docs/AUDIO.md`): voci in corso con VoiceStudio (installato, motore OmniVoice su CUDA).
 
 ## Da provare a mano
 - Con il telecomando vero: quali tasti manda (PageDown/PageUp/B o altri). Se ne manda di diversi, si aggiungono in `js/regia.js`, funzione `tasto`.

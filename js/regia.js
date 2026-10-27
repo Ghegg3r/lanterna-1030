@@ -37,6 +37,7 @@
     if (inFase('attesa', 'verifica', 'sollievo', 'pesca')) return dati().colpevole ? 'morte' : null;
     if (f === 'atto1') return 'manifestazione';
     if (f === 'mezzanotte') return dati().tocchi !== null ? 'voce2' : null;
+    if (f === 'giro') return 'timer';
     if (f === 'titoli' && dati().confessione === 'attesa') return 'confessione';
     return null;
   }
@@ -48,6 +49,7 @@
         case 'morte': Stato.vai('morte'); return ok();
         case 'manifestazione': Stato.evento('manifestazione'); return ok();
         case 'voce2': Stato.vai('risveglio'); return ok();
+        case 'timer': Stato.vai('porta'); return ok();
         case 'confessione': return COMANDI.confessione();
       }
       if (inFase('attesa', 'verifica', 'sollievo', 'pesca')) return no('colpevole_mancante');

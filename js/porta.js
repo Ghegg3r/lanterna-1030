@@ -1,5 +1,5 @@
 /*
- * Mezzanotte, risveglio, la porta e il voto.
+ * Mezzanotte, risveglio, giro dello spirito, la porta e il voto.
  * La porta è un arco gotico in HTML/CSS: due ante che si aprono di 1/6 a ogni scatto di 10 minuti,
  * con la luce fredda dietro. Tutto si calcola dal timer della porta (Stato), mai da contatori.
  */
@@ -108,6 +108,31 @@
     rif = { box: box };
   }
 
+  // --- Giro di mezzanotte: "Aprite le buste", poi lo spirito passa tra voi ---------------
+  // Il timer non parte finché il master non preme Avanti.
+
+  function giro(scena) {
+    const box = el('div', 'giro');
+    box.appendChild(porta());
+    const testo = el('p', 'testo-giro voce');
+    box.appendChild(testo);
+    scena.appendChild(box);
+    rif = { box: box, testo: testo, passo: null };
+  }
+
+  function aggiornaGiro() {
+    const passo = Stato.sottofase();
+    if (passo === rif.passo) return;
+    rif.passo = passo;
+    rif.box.dataset.passo = passo;
+    const testo = rif.testo;
+    testo.classList.remove('visibile');
+    setTimeout(function () {
+      testo.textContent = passo === 'buste' ? T.audio2.dopo : T.porta.giro_spirito;
+      testo.classList.add('visibile');
+    }, 900);
+  }
+
   // --- La porta e il voto ----------------------------------------------------------
 
   function scenaPorta(scena, voto) {
@@ -142,7 +167,6 @@
 
   // La riga sotto la porta: buste, round iniziale, o l'annuncio dello scatto (per 20 s).
   function rigaPorta(trascorso, passo) {
-    if (passo === 'buste') return T.audio2.dopo;
     if (passo === 'round_iniziale') return T.porta.round_iniziale;
     if (rif.voto) return T.porta.scatti[String(C.tempi.voto_min)];
     for (let k = 1; k * C.tempi.scatto_min < C.tempi.porta_min; k++) {
@@ -182,6 +206,7 @@
     rif = null;
     if (fase === 'mezzanotte') mezzanotte(scena);
     else if (fase === 'risveglio') risveglio(scena);
+    else if (fase === 'giro') giro(scena);
     else if (fase === 'porta') scenaPorta(scena, false);
     else if (fase === 'voto') scenaPorta(scena, true);
     else return false;
@@ -192,6 +217,7 @@
   function aggiorna(fase) {
     if (!rif) return;
     if (fase === 'mezzanotte') aggiornaMezzanotte();
+    else if (fase === 'giro') aggiornaGiro();
     else if (fase === 'porta' || fase === 'voto') aggiornaPorta();
   }
 
