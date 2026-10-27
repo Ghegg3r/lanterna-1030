@@ -421,6 +421,8 @@
 
   Stato.ascolta(function (tipo, dati) {
     if (tipo === 'evento' && dati.nome === 'manifestazione') effetto('sblocco');
+    // Un salto di fase (pannello o telefono) è quasi sempre un'emergenza: gli effetti di prima si zittiscono.
+    if (tipo === 'fase' && dati.salto) canali.effetti.forEach(function (l) { ferma(l, 0.5); });
   });
 
   // Le durate delle voci servono subito (decidono i passaggi di fase): si leggono all'avvio.

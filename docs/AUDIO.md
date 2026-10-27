@@ -30,7 +30,23 @@ per i loop si tiene un pezzo centrale di 2-3 minuti (Audacity: taglia, dissolven
 | `porta_B.mp3` | 3-4 min, loop | `darker and heavier, ominous low brass and dark choir, slow heartbeat-like drum, building dread, 1980s horror synth, instrumental, loopable`. Arriva a metà dell'atto 2, quando la porta è aperta a metà. |
 | `battito.mp3` | 30-60 s, loop | meglio come effetto (vedi sotto); con Suno: `slow human heartbeat only, deep, no music` |
 
-## 2. Effetti
+## 2. Effetti — FATTI (28/10)
+Da Freesound, solo licenza **CC0** (uso libero, nessuna attribuzione obbligatoria), anteprime HQ, poi tagliati e
+uniformati con ffmpeg. Fonti, per riferimento:
+
+| File | Suono originale |
+|---|---|
+| `blackout.mp3` | "Machine Shutdown", freesound.org/s/207321 (tagliato a 3,5 s) |
+| `possessione.mp3` | "Ghostly Whispers", freesound.org/s/316797 |
+| `sblocco.mp3` | "Ripping Paper", freesound.org/s/272028 |
+| `rintocco.mp3` | "TollBell", freesound.org/s/73678 |
+| `mezzanotte_12.mp3` | lo stesso rintocco ripetuto 12 volte, a 1,5 s + 3,3 s × n: cade quando si gira ogni carta |
+| `porta_scatto.mp3` | "Hidden Wall Opening", freesound.org/s/243699 |
+| `sigillo.mp3` | "door metal big heavy close slam thud echo", freesound.org/s/406197 |
+| `attraversamento.mp3` | "magical rising wind", freesound.org/s/403003 (tagliato a 8 s) |
+| `battito.mp3` | "SLOW HEARTBEAT", freesound.org/s/249716 |
+
+### Descrizioni originali (per rifarli)
 Dal generatore di effetti sonori (descrizioni in inglese funzionano meglio) o da freesound.org con il filtro **CC0**.
 
 | File | Durata | Descrizione |

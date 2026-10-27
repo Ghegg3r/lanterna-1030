@@ -164,7 +164,7 @@
     avviaCrono(stato.cronoFase);
     entra(fase, opz);
     salva();
-    notifica('fase', { da: da, a: fase });
+    notifica('fase', { da: da, a: fase, salto: !!opz.salto });
   }
 
   // --- Pausa, velocità, spostamenti ---------------------------------------------

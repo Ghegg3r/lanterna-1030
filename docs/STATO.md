@@ -207,7 +207,8 @@ L'utente ha aggiornato i PDF (00 Guida del master, 05 Schede, 06 Inserti e carte
 ## Da fare
 Niente dei prompt.
 - **Voci: fatte** (28/10). Le 6 voci sono in `assets/audio/`, generate con VoiceStudio e `strumenti/genera-voci.mjs` (effetto "spirito", scelto dall'utente); tempi dei sottotitoli in `content/tempi-voci.js`, usati dall'app. Durate: voce 1 70 s, voce 2 124 s, 3a 30 s, 3b 28 s, confessioni 33/32 s. Test completo 66 su 66. Testo della 3b reso neutro: "{arcano} ha attraversato…" (prima "è passato", sbagliato con la Stella).
-- **Da fare**: musiche (Suno) ed effetti, vedi `docs/AUDIO.md`.
+- **Effetti: fatti** (28/10). 9 file da Freesound (CC0), fonti in `docs/AUDIO.md`; i 12 rintocchi di mezzanotte sono costruiti apposta per cadere quando si gira ogni carta. In più: un salto di fase (pannello o telefono) zittisce gli effetti della fase precedente.
+- **Da fare**: le 6 musiche (Suno): `ambiente_attesa`, `sollievo`, `atto1_loop`, `pausa_loop`, `porta_A`, `porta_B`. Prompt in `docs/AUDIO.md`. Oggi 15 file audio su 21.
 
 ## Da provare a mano
 - Con il telecomando vero: quali tasti manda (PageDown/PageUp/B o altri). Se ne manda di diversi, si aggiungono in `js/regia.js`, funzione `tasto`.
