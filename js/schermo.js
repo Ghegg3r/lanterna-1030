@@ -31,12 +31,11 @@
     return b;
   }
 
-  // {arcano}, {sospetto}, {tocchi}: si usa solo nel finale.
+  // {arcano} = il colpevole, {tocchi}: si usa solo nel finale.
   function componi(testo) {
     const d = Stato.dati();
     return testo
       .replace(/\{arcano\}/g, d.colpevole ? A[d.colpevole].nome : '')
-      .replace(/\{sospetto\}/g, d.sospetto ? A[d.sospetto].nome : '')
       .replace(/\{tocchi\}/g, d.tocchi !== null ? String(d.tocchi) : '');
   }
 

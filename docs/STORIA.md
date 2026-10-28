@@ -48,14 +48,16 @@ Lucia non ha mai sospettato Silvia: era quella che l'aveva consolata. Sapeva sol
 ## 5. Gli indizi che portano alla Stella
 | Indizio | Dove | Cosa dice | Come porta alla Stella |
 |---|---|---|---|
-| Il no vuoto | diario, pag. 2 (versione **B**) | "chi sedeva tre posti alla mia sinistra" | piantina → Silvia M. → griglia → Stella |
+| La voce che tremava | diario, pag. 2 | "una delle voci tremava, e più tardi quella stessa mano mi ha portato da bere" | da sola non dice chi: rimanda all'acqua |
 | Silvia e le stelle | diario, pag. 2 | "contava le stelle dalla finestra, sempre otto" | otto stelle = Stella (Grimorio) |
-| L'oggetto B | nascosto in casa | due bicchierini, uno rovesciato, su un foglio con otto stelle, cartellino XVII | acqua versata + otto stelle = Stella |
+| L'oggetto nascosto | nascosto in casa | due bicchierini, uno rovesciato, sul foglio delle otto stelle (niente numero) | le otto stelle = Stella; ma l'acqua fa pensare anche a Papessa e Carro, arcani d'acqua |
 | L'orologio | giornale | fermo alle 3:17, in cucina | collegato al segreto della Stella: alle tre era in cucina con Lucia |
 | Il "credo" | verbale | S.M.: "Abbiamo detto di no. Tutti. Credo." | l'unica che non ne è sicura |
 | I frammenti veri | inserti **vB** (2 innocenti) | "acqua che scorreva per terra e otto punti di luce in alto" | atto 2 |
 | Il ricordo di troppo | inserto del colpevole | conosce il nome *Lucia*, i capelli rossi, il posto a capotavola | se lo dice nell'atto 2, si tradisce |
 | La scheda | scheda della Stella | "alle tre eri sola con Lucia in cucina, lei piangeva" | se il giocatore lo confessa, si incastra con l'orologio |
+
+**I sospetti di mezzanotte.** L'atto 1 non deve dare un nome sicuro: il gruppo indica tre arcani sospetti. Le piste naturali sono Stella (le stelle), Papessa e Carro (l'acqua). Se la Stella è tra i tre, lo schermo lo conferma e scagiona uno degli altri due.
 
 **Elemento:** Aria (Spade). **Candela:** bianca. **Ragazza del 1986:** Silvia M., femmina, 3° posto a sinistra di Lucia. **Compagno di patto:** Claudio P. (Carro). **Parola:** Polaroid. **Parola rubata:** Cassetta (dell'Eremita).
 
@@ -103,8 +105,9 @@ Risposte sì/no che dai con la Ouija o con le carte risposta. Se una domanda non
 > Non vi ho mentito, nella lettera. Avevo paura davvero. Ho passato secoli a guardarvi sperare, e io dovevo restare una promessa. Quella notte Lucia piangeva, e io le ho stretto le mani. Le ho detto che la carta l'avrebbe protetta. Era l'unica bugia che abbia mai detto. *(se sigillata)* E adesso torno a essere solo una luce lontana. *(se attraversata)* E adesso, finalmente, tocca a me.
 
 ## 9. Cosa cambia nella preparazione, ora che il colpevole è fisso
-- Niente sorteggio. Stampi solo la **pagina 2 del diario versione B** e l'**inserto "Sei stato tu" B**.
+- Niente sorteggio. La pagina 2 del diario è una sola (PDF 04); dell'inserto "Sei stato tu" usi la **B**.
 - Negli inserti degli innocenti: 2 con il frammento **vB**, 2-3 esche, gli altri neutri.
-- Oggetto B: **due bicchierini, uno rovesciato, su un foglio con otto stelle disegnate, cartellino XVII**.
+- Oggetto nascosto: **due bicchierini, uno rovesciato, sul foglio delle otto stelle** (PDF 01), senza cartellino.
+- Le buste sigillate con gli arcani stanno **dentro la scatola del mazzo**, sopra il resto del mazzo: Lucia le ha chiuse lì perché nessuno guardasse più quelle carte.
 - Nell'app il colpevole è già impostato (Stella). Il pannello permette ancora di cambiarlo, se mai servisse.
 - Attenzione al rischio vero di un colpevole fisso: tu sai chi è, e lo sa chi ha preparato le buste. Nessun altro. Non dirlo a Ple né a Elia, nemmeno per scherzo.

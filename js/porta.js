@@ -8,7 +8,9 @@
 
   const T = window.CONTENT_TESTI;
   const C = window.CONTENT_CONFIG;
+  const A = window.CONTENT_ARCANI;
   const MIN = 60000;
+  const BIGLIETTI_MIN = 40;   // lo scatto dei biglietti: a 40 minuti dalla fine (SPEC-v4 §2)
 
   let rif = null;
 
@@ -77,24 +79,70 @@
       carte.appendChild(c);
     });
     box.appendChild(carte);
+    const sospetti = el('div', 'sospetti-mezzanotte');
+    box.appendChild(sospetti);
     const testo = el('p', 'testo-mezzanotte voce');
     box.appendChild(testo);
+    const sotto = el('p', 'testo-scagionato voce');
+    box.appendChild(sotto);
     scena.appendChild(box);
     const passato = Stato.trascorso('fase') / 1000;
     box.style.setProperty('--trascorso', passato.toFixed(2));
-    rif = { box: box, testo: testo, passo: null };
+    rif = { box: box, testo: testo, sotto: sotto, sospetti: sospetti, scelti: null, passo: null };
+  }
+
+  // Le tre carte sospette, coperte: si girano una alla volta da quando i sospetti sono stati dati.
+  function disegnaSospetti(sp) {
+    rif.sospetti.textContent = '';
+    rif.scelti = sp ? sp.scelti.join() : null;
+    if (!sp) return;
+    const giaPassati = sp.al === null ? 999 : (Stato.trascorso('fase') - sp.al) / 1000;
+    rif.sospetti.style.setProperty('--dai-sospetti', giaPassati.toFixed(2));
+    sp.scelti.forEach(function (id, i) {
+      const c = el('div', 'sospetto');
+      c.dataset.id = id;
+      c.style.setProperty('--i', i);
+      const g = c.appendChild(el('div', 'carta-gira'));
+      g.appendChild(el('div', 'retro'));
+      g.appendChild(Fascicolo.carta(id, 'fronte'));
+      c.appendChild(el('span', 'nome-carta', A[id].nome));
+      rif.sospetti.appendChild(c);
+    });
+  }
+
+  function testoMezzanotte(passo, d) {
+    const sp = d.sospetti;
+    switch (passo) {
+      case 'legge': return T.mezzanotte.legge;
+      case 'tocchi': return T.tocchi[d.tocchi];
+      case 'sospetti_attesa': case 'sospetti_carte': return T.sospetti.titolo;
+      case 'sospetti_esito': case 'sospetti_scagionato': return sp.tra ? T.sospetti.tra_loro : T.sospetti.nessuno;
+      default: return T.mezzanotte.testo;
+    }
   }
 
   function aggiornaMezzanotte() {
-    const d = Stato.dati(), passo = Stato.sottofase();
+    const d = Stato.dati(), passo = Stato.sottofase(), sp = d.sospetti;
+    if ((sp ? sp.scelti.join() : null) !== rif.scelti) disegnaSospetti(sp);
     if (passo === rif.passo) return;
     rif.passo = passo;
     rif.box.dataset.passo = passo;
+    rif.box.classList.toggle('con-sospetti', !!sp && passo !== 'tocchi' && passo !== 'legge');
+    // Chi si spegne: lo scagionato quando arriva il suo momento, o tutti e tre se il colpevole non c'è.
+    const finito = passo === 'sospetti_scagionato' || passo === 'raccontate';
+    rif.sospetti.querySelectorAll('.sospetto').forEach(function (c) {
+      const spento = sp && ((sp.tra && sp.scagionato === c.dataset.id && finito) ||
+        (!sp.tra && (passo === 'sospetti_esito' || finito)));
+      c.classList.toggle('spento', !!spento);
+    });
+    const sotto = sp && sp.tra && finito ? T.sospetti.scagionato.replace('{arcano}', A[sp.scagionato].nome) : '';
     rif.testo.classList.remove('visibile');
     setTimeout(function () {
       if (!rif || !rif.testo) return;
-      rif.testo.textContent = passo === 'legge' ? T.mezzanotte.legge : passo === 'tocchi' ? T.tocchi[d.tocchi] : T.mezzanotte.testo;
+      rif.testo.textContent = testoMezzanotte(passo, d);
       rif.testo.classList.add('visibile');
+      rif.sotto.textContent = sotto;
+      rif.sotto.classList.toggle('visibile', !!sotto);
     }, 500);
   }
 
@@ -140,6 +188,12 @@
     const alto = el('div', 'alto-porta');
     const tempo = alto.appendChild(el('div', 'timer-porta'));
     const round = alto.appendChild(el('div', 'round'));
+    // I due sospetti rimasti a mezzanotte, se il colpevole era tra i tre
+    const sp = Stato.dati().sospetti;
+    if (sp && sp.tra) {
+      const rimasti = sp.scelti.filter(function (id) { return id !== sp.scagionato; }).map(function (id) { return A[id].nome; });
+      alto.appendChild(el('div', 'promemoria-sospetti', T.sospetti.promemoria.replace('{a}', rimasti[0]).replace('{b}', rimasti[1])));
+    }
     box.appendChild(alto);
     const p = porta();
     box.appendChild(p);
@@ -186,7 +240,11 @@
     rif.porta.style.setProperty('--apertura', apertura().toFixed(3));
     rif.box.classList.toggle('ultimo-minuto', rimane <= C.tempi.battito_s * 1000);
     const meta = Stato.DURATA_PORTA / 2;
-    rif.box.classList.toggle('scuro', trascorso >= meta && trascorso < meta + C.tempi.scuro_s * 1000);
+    // Penombra: al rintocco di metà (60 s) e durante i biglietti (5 minuti), il timer non si ferma.
+    const biglietti = Stato.DURATA_PORTA - BIGLIETTI_MIN * MIN;
+    rif.box.classList.toggle('scuro',
+      (trascorso >= meta && trascorso < meta + C.tempi.scuro_s * 1000) ||
+      (trascorso >= biglietti && trascorso < biglietti + C.tempi.biglietti_s * 1000));
 
     const testo = rigaPorta(trascorso, Stato.sottofase());
     if (testo !== rif.testoRiga) {

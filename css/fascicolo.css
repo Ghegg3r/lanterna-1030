@@ -107,6 +107,17 @@
   padding-left: 6vw;
 }
 .grimorio .introduzione { font-size: calc(var(--t-min) * 1.2); margin-top: 0; }
+.grimorio .fazioni { margin: 0 0 1em; }
+/* la fiamma della casa accanto all'elemento: una goccia di fuoco del suo colore */
+.fiamma-arcano { white-space: nowrap; }
+.fiamma-arcano::before {
+  content: ""; display: inline-block; width: 0.55em; height: 0.85em; margin-right: 0.3em; vertical-align: -0.08em;
+  border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
+  border: 1px solid rgba(58, 33, 12, 0.6);
+}
+.fiamma--bianca::before { background: radial-gradient(ellipse at 50% 75%, #fffef6, #e9e2cc 70%); }
+.fiamma--rossa::before { background: radial-gradient(ellipse at 50% 75%, #ffb36b, #b3261e 70%); }
+.fiamma--nera::before { background: radial-gradient(ellipse at 50% 75%, #6b5d60, #1c1719 70%); }
 .grimorio .semi { font-style: normal; font-family: var(--f-titoli); font-size: var(--t-min); letter-spacing: 0.03em; border-bottom: 1px solid rgba(74, 47, 23, 0.5); padding-bottom: 0.8em; }
 .pagina-arcano { display: flex; gap: 2.5vw; align-items: flex-start; padding: 3vh 0; border-bottom: 1px dashed rgba(74, 47, 23, 0.4); }
 .carta-grimorio { flex: 0 0 auto; width: 15vh; margin: 0; }

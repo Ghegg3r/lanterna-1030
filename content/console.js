@@ -19,7 +19,8 @@ window.CONTENT_CONSOLE = {
     "voce2": "Avanti: voce 2",
     "timer": "Avanti: parte il timer della porta",
     "confessione": "Avanti: la confessione",
-    "niente": "Avanti: niente in questa fase"
+    "niente": "Avanti: niente in questa fase",
+    "mezzanotte": "Avanti: prima tocchi e sospetti"
   },
   "pausa": "Pausa",
   "riprendi": "Riprendi",
@@ -29,7 +30,10 @@ window.CONTENT_CONSOLE = {
   "velo_acceso": "VELO NERO",
   "prova": "PROVA ×10",
 
-  "tocchi": "Risposte giuste a mezzanotte",
+  "tocchi": "Tocchi: risposte giuste alle domande 1 e 2",
+  "sospetti": "I tre sospetti: tocca tre carte",
+  "conferma_sospetti": "Conferma i tre sospetti",
+  "sospetti_dati": "Sospetti inseriti:",
   "sigillo": "La carta girata (tocca due volte)",
   "confessione": "Fai partire la confessione",
 

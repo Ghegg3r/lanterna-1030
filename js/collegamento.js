@@ -12,7 +12,7 @@
   const C = window.CONTENT_CONFIG;
   const CHIAVE = C.chiave_storage + '_regia';
   // Solo i comandi della tabella di SPEC-v3 §2: il telefono non può resettare né cambiare il colpevole.
-  const AMMESSI = ['avanti', 'pausa', 'velo', 'tocchi', 'sigillo', 'confessione', 'vai_a', 'orologio', 'volume'];
+  const AMMESSI = ['avanti', 'pausa', 'velo', 'tocchi', 'sospetti', 'sigillo', 'confessione', 'vai_a', 'orologio', 'volume'];
 
   let codice = null, ponte = null, stato = 'spento';
   let coda = Promise.resolve(), esito = null, ultimaFirma = '', timer = null;
@@ -31,6 +31,7 @@
       velo: d.velo,
       velocita: d.tempo.velocita,
       tocchi: d.tocchi,
+      sospetti: d.sospetti ? d.sospetti.scelti : null,
       confessione: d.confessione,
       carte: Stato.carteInGioco(),
       volume: d.volume,

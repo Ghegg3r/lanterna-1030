@@ -94,7 +94,7 @@
     if (stato.velocita !== 1) segnali.push(K.prova);
     $('segnali').textContent = segnali.join(' · ');
 
-    $('avanti').textContent = K.avanti[stato.avanti || 'niente'];
+    $('avanti').textContent = K.avanti[stato.avanti || (stato.fase === 'mezzanotte' ? 'mezzanotte' : 'niente')];
     $('pausa').textContent = stato.pausa ? K.riprendi : K.pausa;
     $('velo').textContent = stato.velo ? K.togli_velo : K.velo;
     $('pausa').classList.toggle('attivo', stato.pausa);
@@ -103,6 +103,7 @@
     // Pannelli che servono solo in certe fasi
     $('sezione-tocchi').hidden = stato.fase !== 'mezzanotte';
     $('tocchi').querySelectorAll('button').forEach(function (b, n) { b.classList.toggle('attivo', stato.tocchi === n); });
+    disegnaSospetti();
     $('sezione-sigillo').hidden = stato.fase !== 'sigillo';
     const carte = $('carte');
     if (carte.dataset.carte !== stato.carte.join()) {
@@ -115,6 +116,34 @@
     $('sezione-confessione').hidden = !(stato.fase === 'titoli' && stato.confessione === 'attesa');
     $('fasi').querySelectorAll('button').forEach(function (b) { b.classList.toggle('attivo', b.dataset.fase === stato.fase); });
     if (document.activeElement !== $('volume')) $('volume').value = stato.volume;
+  }
+
+  // A mezzanotte: si toccano tre carte, poi "Conferma". Lo schermo accetta i sospetti una volta sola.
+  let sceltiSospetti = [];
+  function disegnaSospetti() {
+    if (!stato) return;
+    $('sezione-sospetti').hidden = stato.fase !== 'mezzanotte';
+    const dati = stato.sospetti;
+    $('sospetti-dati').textContent = dati ? K.sospetti_dati + ' ' + dati.map(function (id) { return A[id].nome; }).join(', ') : '';
+    const box = $('carte-sospetti');
+    box.hidden = !!dati;
+    if (box.dataset.carte !== stato.carte.join()) {
+      box.dataset.carte = stato.carte.join();
+      box.textContent = '';
+      stato.carte.forEach(function (id) {
+        const b = el('button', null, A[id].nome);
+        b.dataset.id = id;
+        b.onclick = function () {
+          const i = sceltiSospetti.indexOf(id);
+          if (i >= 0) sceltiSospetti.splice(i, 1);
+          else if (sceltiSospetti.length < 3) sceltiSospetti.push(id);
+          disegnaSospetti();
+        };
+        box.appendChild(b);
+      });
+    }
+    box.querySelectorAll('button').forEach(function (b) { b.classList.toggle('attivo', sceltiSospetti.indexOf(b.dataset.id) >= 0); });
+    $('conferma-sospetti').hidden = !!dati || sceltiSospetti.length !== 3;
   }
 
   function riceviStato(m) {
@@ -143,7 +172,15 @@
     $('pausa').onclick = function () { manda('pausa'); };
     $('velo').onclick = function () { manda('velo'); };
     $('titolo-tocchi').textContent = K.tocchi;
-    for (let n = 0; n <= 3; n++) {
+    $('titolo-sospetti').textContent = K.sospetti;
+    $('conferma-sospetti').textContent = K.conferma_sospetti;
+    doppio($('conferma-sospetti'), function () {
+      if (sceltiSospetti.length !== 3) return;
+      manda('sospetti', sceltiSospetti.slice());
+      sceltiSospetti = [];
+      disegnaSospetti();
+    });
+    for (let n = 0; n <= window.CONTENT_CONFIG.tocchi_max; n++) {
       const b = $('tocchi').appendChild(el('button', null, String(n)));
       b.onclick = function () { manda('tocchi', n); };
     }

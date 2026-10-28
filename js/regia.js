@@ -13,7 +13,6 @@
   'use strict';
 
   const C = window.CONTENT_CONFIG;
-  const A = window.CONTENT_ARCANI;
 
   const ascoltatori = [];
 
@@ -36,7 +35,7 @@
     const f = fase();
     if (inFase('attesa', 'verifica', 'sollievo', 'pesca')) return dati().colpevole ? 'morte' : null;
     if (f === 'atto1') return 'manifestazione';
-    if (f === 'mezzanotte') return dati().tocchi !== null ? 'voce2' : null;
+    if (f === 'mezzanotte') return dati().tocchi !== null && dati().sospetti ? 'voce2' : null;
     if (f === 'giro') return 'timer';
     if (f === 'titoli' && dati().confessione === 'attesa') return 'confessione';
     return null;
@@ -53,7 +52,7 @@
         case 'confessione': return COMANDI.confessione();
       }
       if (inFase('attesa', 'verifica', 'sollievo', 'pesca')) return no('colpevole_mancante');
-      if (fase() === 'mezzanotte') return no('tocchi_mancanti');
+      if (fase() === 'mezzanotte') return no(dati().tocchi === null ? 'tocchi_mancanti' : 'sospetti_mancanti');
       return no('niente');
     },
 
@@ -71,10 +70,40 @@
 
     tocchi: function (n) {
       n = Number(n);
-      if (!(n >= 0 && n <= 3 && Math.floor(n) === n)) return no('valore');
+      if (!(n >= 0 && n <= C.tocchi_max && Math.floor(n) === n)) return no('valore');
       const campi = { tocchi: n };
       if (fase() === 'mezzanotte') campi.tocchiAl = Stato.trascorso('fase');
       Stato.imposta(campi);
+      return ok();
+    },
+
+    // I tre sospetti di mezzanotte (SPEC-v4). Lo schermo dice se il colpevole è tra loro e, se sì,
+    // ne scagiona uno degli altri due. La scelta si salva: ricaricando non cambia.
+    // Solo a mezzanotte e una volta; il pannello può correggerli sempre.
+    sospetti: function (lista, origine) {
+      if (!Array.isArray(lista) || lista.length !== 3) return no('valore');
+      const carte = Stato.carteInGioco();
+      if (lista.some(function (id) { return carte.indexOf(id) < 0; })) return no('valore');
+      if (lista[0] === lista[1] || lista[0] === lista[2] || lista[1] === lista[2]) return no('valore');
+      if (origine !== 'pannello') {
+        if (fase() !== 'mezzanotte') return no('fase');
+        if (dati().sospetti) return no('sospetti_gia');
+      }
+      const prima = dati().sospetti;
+      const tra = lista.indexOf(dati().colpevole) >= 0;
+      const altri = lista.filter(function (id) { return id !== dati().colpevole; });
+      let scagionato = null;
+      if (tra) {
+        // stessa carta di prima se il pannello ripete gli stessi tre
+        scagionato = prima && prima.scagionato && altri.indexOf(prima.scagionato) >= 0
+          ? prima.scagionato : altri[Math.floor(Math.random() * altri.length)];
+      }
+      Stato.imposta({ sospetti: {
+        scelti: lista.slice(),
+        tra: tra,
+        scagionato: scagionato,
+        al: fase() === 'mezzanotte' ? Stato.trascorso('fase') : null
+      } });
       return ok();
     },
 
@@ -171,6 +200,8 @@
     colpevole: function (id) {
       if (C.portanti.indexOf(id) < 0) return no('valore');
       Stato.imposta({ colpevole: id });
+      // Con un altro colpevole l'esito dei sospetti va ricalcolato.
+      if (dati().sospetti) COMANDI.sospetti(dati().sospetti.scelti, 'pannello');
       return ok();
     },
 
@@ -184,14 +215,9 @@
       n = Number(n);
       if (!(n >= C.giocatori_min && n <= C.giocatori_max && Math.floor(n) === n)) return no('valore');
       Stato.imposta({ giocatori: n });
-      // Un sospetto su una carta che non è più in gioco non ha senso.
-      if (dati().sospetto && Stato.carteInGioco().indexOf(dati().sospetto) < 0) Stato.imposta({ sospetto: null });
-      return ok();
-    },
-
-    sospetto: function (id) {
-      if (id !== null && !A[id]) return no('valore');
-      Stato.imposta({ sospetto: id });
+      // Sospetti su carte che non sono più in gioco non hanno senso.
+      const s = dati().sospetti;
+      if (s && s.scelti.some(function (id) { return Stato.carteInGioco().indexOf(id) < 0; })) Stato.imposta({ sospetti: null });
       return ok();
     },
 
@@ -215,7 +241,7 @@
     const fn = COMANDI[nome];
     let esito;
     try {
-      esito = fn ? (fn(valore) || ok()) : no('sconosciuto');
+      esito = fn ? (fn(valore, origine) || ok()) : no('sconosciuto');
     } catch (e) {
       console.error(e);
       esito = no('sconosciuto');
@@ -243,7 +269,7 @@
       else if (k === 'ArrowLeft') nome = 'pausa';
       else if (k === 'b' || k === 'B' || k === '.') nome = 'velo';
       else if (k === 'f' || k === 'F') nome = 'schermo_intero';
-      else if (/^[0-3]$/.test(k) && fase() === 'mezzanotte') { nome = 'tocchi'; valore = Number(k); }
+      else if (/^[0-9]$/.test(k) && Number(k) <= C.tocchi_max && fase() === 'mezzanotte') { nome = 'tocchi'; valore = Number(k); }
     }
     if (!nome) return;
     e.preventDefault();

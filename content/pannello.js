@@ -37,13 +37,18 @@ window.CONTENT_PANNELLO = {
   },
 
   "tocchi": {
-    "titolo": "Risposte giuste a mezzanotte",
+    "titolo": "Tocchi: risposte giuste alle domande 1 e 2 (0-2)",
     "nessuna": "non ancora inserite"
   },
 
-  "sospetto": {
-    "titolo": "Sospetto di mezzanotte (facoltativo)",
-    "nessuno": "nessuno"
+  "sospetti": {
+    "titolo": "Sospetti di mezzanotte (tre arcani)",
+    "scegli": "Tocca tre carte, poi conferma.",
+    "conferma": "Conferma i tre sospetti",
+    "attuali": "Inseriti:",
+    "nessuno": "non ancora inseriti",
+    "tra_loro": "il colpevole è tra loro; scagionato:",
+    "fuori": "il colpevole non è tra loro"
   },
 
   "fasi": {
@@ -122,7 +127,9 @@ window.CONTENT_PANNELLO = {
     "colpevole_mancante": "Manca il colpevole: imposta il colpevole prima.",
     "niente": "In questa fase non fa niente.",
     "niente_da_fermare": "Non c'è un orologio o un timer da fermare.",
-    "tocchi_mancanti": "Inserisci prima le risposte giuste (0-3).",
+    "tocchi_mancanti": "Inserisci prima le risposte giuste (0-2).",
+    "sospetti_mancanti": "Inserisci prima i tre sospetti.",
+    "sospetti_gia": "I sospetti sono già stati dati: si correggono solo dal pannello.",
     "valore": "Valore non valido.",
     "fase": "Comando non valido in questa fase.",
     "sconosciuto": "Comando sconosciuto."

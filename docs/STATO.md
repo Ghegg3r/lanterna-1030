@@ -178,6 +178,22 @@ Nota per chi prova: il Chrome avviato dalla sandbox di Claude Code ha la Cache S
 
 Messaggi arrivati in ordine inverso: la console tiene sempre lo stato più recente (timestamp dello schermo).
 
+### SPEC-v4: sospetti di mezzanotte, biglietti, fazioni (28/10/2026 sera)
+Il gioco di carta è cambiato (`docs/SPEC-v4-sospetti.md`, `docs/STORIA.md` aggiornata). Fatto nell'app:
+- **Tocchi 0-2** (`config.tocchi_max` = 2): tasti 0-2, pannello, console; il tasto 3 non fa niente.
+- **Tre sospetti**: comando nuovo `sospetti` con `[arcano, arcano, arcano]` (in `Regia.comando`, ammesso anche dalla console). Accettato solo a mezzanotte e una volta; il pannello può correggerli sempre. Se il colpevole è tra i tre, uno degli altri due è scelto a caso **una volta** e salvato nello stato (`sospetti.scagionato`): ricaricando o tornando a mezzanotte non cambia. Se cambia il colpevole dal pannello, l'esito si ricalcola; se cambia il numero di giocatori e un sospetto esce dal gioco, i sospetti si azzerano.
+- **Schermata**: dopo la frase dei tocchi, "I vostri sospetti."; quando arrivano, le tre carte grandi si girano una alla volta (al posto della fila delle carte), poi "Il colpevole è tra loro." e dopo 3 s la carta scagionata si spegne con "… disse di no."; oppure "Nessuno di loro. Cercate ancora." e si spengono tutte. Dopo 15 s (`sospetti_s`) "Raccontate.", con le carte ancora visibili. **Avanti a mezzanotte serve tocchi e sospetti**, altrimenti puntino rossastro (motivo "Inserisci prima i tre sospetti").
+- **Atto 2**: sotto il nome del round, "Sospetti: … · …" con i due rimasti (solo se il colpevole era tra i tre).
+- **Titoli**: "A mezzanotte sospettavate {a}, {b} e {c}." al posto del vecchio sospetto unico (tolto da stato, regia, pannello e testi).
+- **Biglietti**: lo scatto dei 40 minuti ha il testo nuovo; lo schermo resta in penombra per 5 minuti (`biglietti_s` = 300). Il timer non si ferma.
+- **Grimorio**: riga delle fazioni sotto l'introduzione; accanto all'elemento di ogni portante, una piccola fiamma colorata e "fiamma bianca/rossa/nera". La fiamma si legge dal campo `fazione` già presente in `arcani.js` (la SPEC lo chiama `fiamma`: va bene anche quello, l'app legge entrambi).
+- **Console del telefono**: tocchi 0-2; a mezzanotte la griglia delle carte in gioco, si toccano tre carte e "Conferma i tre sospetti" (due tocchi); poi mostra i sospetti inseriti. Il pulsante grande dice "Avanti: prima tocchi e sospetti" finché mancano. La console riceve solo i nomi scelti, mai l'esito né il colpevole.
+- **Pannello**: sezione "Sospetti di mezzanotte (tre arcani)" con l'esito (tra loro / scagionato) al posto del vecchio sospetto.
+- `docs/SERATA.md`: mezzanotte in due passi (tocchi, sospetti) e la riga dei biglietti.
+- Le voci non sono cambiate.
+
+**Provato**: test completo 76 su 76 (tasto 3 ignorato, Avanti senza sospetti ignorato, sospetti con la Stella, scagionato e frase, promemoria nella porta, titoli). Test SPEC-v4 17 su 17 (ricarica con lo stesso scagionato, correzione dal pannello, "Nessuno di loro" senza promemoria, biglietti con penombra di 5 minuti e timer che corre, Grimorio con fazioni e 8 fiamme). Console sul canale vero 9 su 9 (tocchi 0-2, tre carte, conferma a due tocchi, nessun colpevole visibile).
+
 ## Criteri di accettazione (SPEC §10, SPEC-v2 §6) — esito al 23/10
 1. Doppio clic su `index.html`, niente errori in console: ✔. Unica eccezione voluta: "file non trovato" per ogni audio che manca (decisione dell'utente).
 2. Prova completa ×10 da avvio a titoli senza toccare il pannello dopo l'impostazione: ✔. Solo tastiera, 10,4 minuti reali, mezzanotte e voto arrivati da soli.

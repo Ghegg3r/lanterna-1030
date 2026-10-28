@@ -50,6 +50,9 @@ window.CONTENT_FASCICOLO = {
           "linguetta": "Il Grimorio",
           "introduzione": "Dal quaderno di Ada: ciò che ogni carta porta con sé.",
           "semi": "Coppe: acqua · Bastoni: fuoco · Spade: aria · Denari: terra",
+          "fazioni": "Da quando la Morte rifiutò di scegliere chi potesse passare la porta, il mazzo è diviso in tre case: i rassegnati della fiamma bianca, i ribelli della fiamma rossa, gli ambigui della fiamma nera. Le altre carte non hanno fiamma.",
+          // accanto all'elemento di ogni arcano portante; {fiamma} = bianca, rossa o nera
+          "fiamma": "fiamma {fiamma}",
           "mostra": "arcani_in_gioco_piu_morte"
         }
       ]

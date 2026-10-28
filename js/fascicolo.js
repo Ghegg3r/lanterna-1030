@@ -70,6 +70,7 @@
   function grimorio(d) {
     const a = el('article', 'doc grimorio');
     a.appendChild(el('p', 'introduzione', d.introduzione));
+    if (d.fazioni) a.appendChild(el('p', 'fazioni', d.fazioni));
     a.appendChild(el('p', 'semi', d.semi));
     const carte = Stato.carteInGioco().concat(['morte']);
     carte.forEach(function (id) {
@@ -78,7 +79,14 @@
       pag.appendChild(carta(id));
       const testo = el('div', 'testo-arcano');
       testo.appendChild(el('h3', null, ar.numero + ' · ' + ar.nome));
-      testo.appendChild(el('p', 'elemento', ar.elemento));
+      const elemento = testo.appendChild(el('p', 'elemento', ar.elemento));
+      // Solo i portanti hanno una fiamma (la casa del mazzo): bianca, rossa o nera
+      const fiamma = ar.fiamma || ar.fazione;
+      if (fiamma && d.fiamma) {
+        elemento.appendChild(document.createTextNode(' · '));
+        const f = elemento.appendChild(el('span', 'fiamma-arcano fiamma--' + fiamma, d.fiamma.replace('{fiamma}', fiamma)));
+        f.setAttribute('data-fiamma', fiamma);
+      }
       const ul = el('ul', 'simboli');
       ar.simboli.forEach(function (s) { ul.appendChild(el('li', null, s)); });
       testo.appendChild(ul);

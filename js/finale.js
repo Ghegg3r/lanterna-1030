@@ -68,7 +68,10 @@
 
     const crediti = el('div', 'crediti');
     const righe = [];
-    if (d.sospetto) righe.push(el('p', 'riga-titoli voce', Schermo.componi(T.titoli.sospetto)));
+    if (d.sospetti) {
+      const n = d.sospetti.scelti.map(function (id) { return A[id].nome; });
+      righe.push(el('p', 'riga-titoli voce', T.titoli.sospetti.replace('{a}', n[0]).replace('{b}', n[1]).replace('{c}', n[2])));
+    }
     if (d.tocchi !== null) righe.push(el('p', 'riga-titoli voce', T.titoli.tocchi[d.tocchi]));
     const morte = el('div', 'riga-titoli morte-si-rialza');
     morte.appendChild(Fascicolo.carta('morte', 'carta-morte'));

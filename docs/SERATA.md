@@ -34,10 +34,12 @@ Ogni pressione accende per un secondo un puntino quasi invisibile in basso a des
 | **Codice** (orologio 23:10) | niente | Trovano 1386 nella tua busta e lo scrivono sullo schermo. |
 | **Atto 1**: orologio, fascicolo, obiettivi | **Avanti** = manifestazione (prima di ogni visione) | Si può premere quante volte vuoi. |
 | Pausa cena | **Indietro** per fermare, **Indietro** per riprendere | L'orologio si ferma. |
-| **Mezzanotte** (24:00, da sola) | inserisci le **risposte giuste 0-3**: tastiera del PC (tasti 0-3), pannello o telefono | Senza tocchi, Avanti non fa niente (puntino rossastro). |
-| "Raccontate." | **Avanti** quando hanno finito | Parte la voce 2, poi "Aprite le vostre buste." |
+| **Mezzanotte** (24:00, da sola) | 1. **Tocchi**: risposte giuste alle domande 1 e 2 del verbale, **0-2** (tasti 0-2 del PC, pannello o telefono) | Lo schermo dice quanti tocchi per 8 s, poi "I vostri sospetti." |
+| "I vostri sospetti." | 2. **I tre sospetti** della domanda 3: dal telefono (tocca tre carte, poi "Conferma", due volte) o dal pannello | Le tre carte si girano. Se c'è la Stella: "Il colpevole è tra loro", poi una delle altre due si spegne ("… disse di no"). Se non c'è: "Nessuno di loro" e si spengono tutte. Si dà una volta sola; il pannello può correggere. |
+| "Raccontate." | **Avanti** quando hanno finito | Senza tocchi **e** sospetti, Avanti non fa niente (puntino rossastro). Parte la voce 2, poi "Aprite le vostre buste." |
 | **"Lo spirito passa tra voi."** | passa dietro ogni giocatore a guardare la carta, poi **Avanti** | Il timer di 60 minuti parte solo quando premi Avanti. |
-| **La porta**: timer e round | niente | Prima le presentazioni (ognuno dichiara un arcano). Scatti ogni 10 minuti; al minuto 30 lo schermo si abbassa: è il momento dei tocchi. |
+| **La porta**: timer e round | niente | Prima le presentazioni (ognuno dichiara un arcano). Sotto il round, i due sospetti rimasti (se la Stella era tra i tre). Scatti ogni 10 minuti; al minuto 30 lo schermo si abbassa: è il momento dei tocchi. |
+| **I biglietti** (a 40:00) | raccogli i biglietti piegati, vai in un'altra stanza, torna con le risposte | Lo schermo lo annuncia e resta in penombra per 5 minuti. **Il timer non si ferma.** |
 | **Voto** (da 10:00) | niente | I giocatori toccano "Abbiamo nominato qualcuno". |
 | **Sigillo**: le carte | tocca la carta girata, **due volte** (o dal telefono) | Se il timer arriva a 0 prima, la porta si spalanca da sola. |
 | Porta sigillata / attraversata | niente | La voce dice il nome del colpevole. |

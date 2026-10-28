@@ -28,6 +28,11 @@ window.CONTENT_CONFIG = {
     "round_iniziale_s": 15,
     "buste_s": 6,
     "scuro_s": 60,
+    "biglietti_s": 300,
+    // Sospetti di mezzanotte: le tre carte si girano, poi l'esito; dopo questi secondi, "Raccontate."
+    "sospetti_esito_s": 4,
+    "sospetti_scagionato_s": 7,
+    "sospetti_s": 15,
     "riga_titoli_s": 5,
     "attesa_confessione_s": 20,
     "voce_finale_dopo_s": 3,
@@ -40,6 +45,9 @@ window.CONTENT_CONFIG = {
     "rossa":  ["MT", "CP", "BL"],
     "nera":   ["SV", "MD"]
   },
+
+  // Tocchi a mezzanotte: risposte giuste alle domande 1 e 2 del verbale.
+  "tocchi_max": 2,
 
   "portanti": ["mondo", "stella", "eremita", "torre", "carro", "amanti", "giustizia", "papessa"],
 

@@ -11,6 +11,7 @@
   const A = window.CONTENT_ARCANI;
 
   let box, stato, messaggio, statoRegia = null;
+  let sceltiSospetti = [];   // le carte toccate nel pannello, prima della conferma
   let aperto = false;
   let mostraColpevoleFino = 0;
 
@@ -129,17 +130,34 @@
 
     // Risposte giuste a mezzanotte
     s = sezione(P.tocchi.titolo);
-    for (let n = 0; n <= 3; n++) {
+    for (let n = 0; n <= C.tocchi_max; n++) {
       s.appendChild(pulsante(String(n), function () { comando('tocchi', n); }, n === d.tocchi ? 'attivo' : null));
     }
     if (d.tocchi === null) s.appendChild(el('p', 'nota', P.tocchi.nessuna));
 
-    // Sospetto di mezzanotte
-    s = sezione(P.sospetto.titolo);
-    s.appendChild(pulsante(P.sospetto.nessuno, function () { comando('sospetto', null); }, d.sospetto === null ? 'attivo' : null));
+    // I tre sospetti di mezzanotte: si toccano tre carte, poi si conferma (il pannello può correggerli)
+    s = sezione(P.sospetti.titolo);
+    const sp = d.sospetti;
+    let stato_sp = P.sospetti.nessuno;
+    if (sp) {
+      stato_sp = P.sospetti.attuali + ' ' + sp.scelti.map(function (id) { return A[id].nome; }).join(', ') + ' — ' +
+        (sp.tra ? P.sospetti.tra_loro + ' ' + A[sp.scagionato].nome : P.sospetti.fuori);
+    }
+    s.appendChild(el('p', 'nota', stato_sp));
+    s.appendChild(el('p', 'nota', P.sospetti.scegli));
     Stato.carteInGioco().forEach(function (id) {
-      s.appendChild(pulsante(A[id].nome, function () { comando('sospetto', id); }, d.sospetto === id ? 'attivo' : null));
+      s.appendChild(pulsante(A[id].nome, function () {
+        const i = sceltiSospetti.indexOf(id);
+        if (i >= 0) sceltiSospetti.splice(i, 1);
+        else if (sceltiSospetti.length < 3) sceltiSospetti.push(id);
+        disegna();
+      }, sceltiSospetti.indexOf(id) >= 0 ? 'attivo' : null));
     });
+    if (sceltiSospetti.length === 3) {
+      s.appendChild(doppio(P.sospetti.conferma, function () {
+        if (comando('sospetti', sceltiSospetti.slice()).ok) { sceltiSospetti = []; disegna(); }
+      }));
+    }
 
     // Salta a fase
     s = sezione(P.fasi.titolo);

@@ -74,7 +74,7 @@
       giocatori: C.giocatori_max,
       tocchi: null,
       tocchiAl: null,      // trascorso della fase quando sono stati inseriti i tocchi (solo a mezzanotte)
-      sospetto: null,
+      sospetti: null,      // { scelti: [3 arcani], tra: bool, scagionato: arcano|null, al: ms della fase }
       fiamme: { bianca: false, rossa: false, nera: false },
       introAtto1: false,   // true se all'atto 1 si è arrivati col codice: si mostrano le frasi dei piatti
       documentiVisti: [],
@@ -132,6 +132,8 @@
         break;
       case 'mezzanotte':
         stato.tocchiAl = null;
+        // Tornando a mezzanotte, i sospetti già dati si mostrano come risultato, senza rigirare le carte.
+        if (stato.sospetti) stato.sospetti = Object.assign({}, stato.sospetti, { al: null });
         break;
       case 'porta':
         if (!stato.porta.attivo || DURATA_PORTA - trascorsoDi(stato.porta) <= VOTO) avviaCrono(stato.porta);
@@ -231,8 +233,17 @@
     }
     if (f === 'atto1') return 'fascicolo';
     if (f === 'mezzanotte') {
-      if (stato.tocchi === null) return 'legge';
+      // prima i tocchi (8 s), poi i tre sospetti: le carte si girano, l'esito, lo scagionato, "Raccontate."
+      const sp = stato.sospetti;
       if (stato.tocchiAl !== null && t - stato.tocchiAl < s(tp.tocchi_s)) return 'tocchi';
+      if (sp && sp.al !== null && t - sp.al < s(tp.sospetti_s)) {
+        const d = t - sp.al;
+        if (d < s(tp.sospetti_esito_s)) return 'sospetti_carte';
+        if (!sp.tra || d < s(tp.sospetti_scagionato_s)) return 'sospetti_esito';
+        return 'sospetti_scagionato';
+      }
+      if (stato.tocchi === null) return 'legge';
+      if (!sp) return 'sospetti_attesa';
       return 'raccontate';
     }
     // Giro di mezzanotte: prima "Aprite le vostre buste.", poi lo spirito passa tra i giocatori.

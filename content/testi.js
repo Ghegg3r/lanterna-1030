@@ -1,4 +1,4 @@
-// Tutti i testi dello schermo. {arcano} = nome del colpevole, {sospetto} = arcano annotato a mezzanotte.
+// Tutti i testi dello schermo. {arcano} = nome del colpevole; {a}, {b}, {c} = i sospetti di mezzanotte.
 // Le voci hanno "righe": sottotitoli mostrati uno per volta. "t" (secondi dall'inizio) è facoltativo.
 window.CONTENT_TESTI = {
   "avvio": {
@@ -77,8 +77,16 @@ window.CONTENT_TESTI = {
   "tocchi": {
     "0": "Lo spirito non vi concede nulla. Cercherete da soli.",
     "1": "Lo spirito vi concede un tocco.",
-    "2": "Lo spirito vi concede due tocchi.",
-    "3": "Lo spirito vi concede tre tocchi."
+    "2": "Lo spirito vi concede due tocchi."
+  },
+
+  // Mezzanotte (SPEC-v4): i tre arcani sospetti. {arcano} = quello scagionato; {a} {b} = i due rimasti.
+  "sospetti": {
+    "titolo": "I vostri sospetti.",
+    "tra_loro": "Il colpevole è tra loro.",
+    "scagionato": "{arcano} disse di no.",
+    "nessuno": "Nessuno di loro. Cercate ancora.",
+    "promemoria": "Sospetti: {a} · {b}"
   },
 
   "pausa": {
@@ -129,7 +137,7 @@ window.CONTENT_TESTI = {
     },
     "scatti": {
       "50": "La notte lunga. Ora potete parlare in segreto, e usare i vostri poteri.",
-      "40": "Qualcosa spinge dall'altra parte.",
+      "40": "I biglietti. Consegnate allo spirito ciò che chiedete, piegato. Tutti, anche chi non chiede nulla.",
       "30": "Lo spirito cammina tra voi. Uno di voi ricorda più di quanto dovrebbe.",
       "20": "Le accuse. La soglia è aperta a metà.",
       "10": "Il sigillo. Votate: la porta si chiude una volta sola."
@@ -169,13 +177,12 @@ window.CONTENT_TESTI = {
   "titoli": {
     "rivelazione": "Chi vi osserva dalle carte era {arcano}.",
     "confessione": "La confessione",
-    "sospetto": "A mezzanotte sospettavate {sospetto}.",
+    "sospetti": "A mezzanotte sospettavate {a}, {b} e {c}.",
     // Una frase per ogni numero di tocchi (risposte giuste a mezzanotte).
     "tocchi": {
       "0": "Lo spirito non vi aveva concesso nessun tocco.",
       "1": "Lo spirito vi aveva concesso un tocco.",
-      "2": "Lo spirito vi aveva concesso due tocchi.",
-      "3": "Lo spirito vi aveva concesso tre tocchi."
+      "2": "Lo spirito vi aveva concesso due tocchi."
     },
     "fine": "Buona notte di Ognissanti."
   }
