@@ -13,7 +13,7 @@
  */
 'use strict';
 
-const CACHE = 'tarocchi-maledetti-v2';
+const CACHE = 'tarocchi-maledetti-v3';
 const ATTESA_RETE = 3000;
 const PESANTI = /\.(png|jpe?g|webp|gif|svg|mp3|m4a|ogg|wav|woff2?)$/i;
 
@@ -105,7 +105,9 @@ function salva(cache, req, risposta) {
 
 function primaRete(req) {
   return caches.open(CACHE).then(function (cache) {
-    const dallaRete = fetch(req).then(function (r) { return salva(cache, req, r); });
+    // no-cache: chiede sempre al sito se il file è cambiato. Senza, GitHub Pages lascia al browser
+    // la copia vecchia per 10 minuti dopo ogni aggiornamento.
+    const dallaRete = fetch(req, { cache: 'no-cache' }).then(function (r) { return salva(cache, req, r); });
     const scaduto = new Promise(function (ok) { setTimeout(ok, ATTESA_RETE); });
     return Promise.race([dallaRete.catch(function () { return null; }), scaduto]).then(function (r) {
       if (r) return r;
