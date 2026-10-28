@@ -211,6 +211,11 @@ Niente dei prompt.
 - **Musiche: fatte** (28/10), con Suno dall'utente, preparate come loop senza salti (dettagli in `docs/AUDIO.md`). **Tutti i 21 file audio ci sono**: la console di Chrome ora è completamente pulita. Corretto anche un difetto: il sollievo entrava con la dissolvenza lunga dei loop (8 s) e si perdeva l'apertura; ora i brani che suonano una volta entrano subito. Test completo 66 su 66.
 - **Da provare a mano**: ascoltare una serata intera con le casse vere e regolare i volumi delle tracce in `content/audio.js`.
 
+### Controllo generale (28/10/2026)
+- Ogni testo citato nel codice esiste in `content/` (controllo automatico: 237 riferimenti, nessuno mancante).
+- **Corretto un problema dell'offline**: il service worker scaricava la copia completa solo all'installazione, quindi un dispositivo che aveva già aperto il sito non avrebbe avuto i file aggiunti dopo (le musiche) e avrebbe tenuto il vecchio battito. Ora a ogni apertura con la rete la copia si sincronizza (scarica solo i file nuovi o cambiati) e il pannello dice "Pronto offline: 70 file su 70" o quali mancano, con il pulsante "Aggiorna la copia offline". Cache portata a v2. Provato: file mancante segnalato, recuperato alla riapertura, tutto funzionante col server spento.
+- README e SERATA: la riga "Pronto offline" e la nota sulla memoria separata dell'app aperta dall'icona sull'iPad.
+
 ## Da provare a mano
 - Con il telecomando vero: quali tasti manda (PageDown/PageUp/B o altri). Se ne manda di diversi, si aggiungono in `js/regia.js`, funzione `tasto`.
 - Su iPad: 3 secondi sull'angolo in alto a destra aprono il pannello; schermo intero; lo schermo non si spegne.

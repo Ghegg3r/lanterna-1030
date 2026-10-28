@@ -187,14 +187,23 @@
     // Schermo
     s = sezione(P.schermo.titolo);
     s.appendChild(pulsante(P.schermo.intero, function () { comando('schermo_intero'); }));
-    const offline = s.appendChild(el('p', 'nota', P.schermo.offline_no));
-    if (window.caches && /^https?:$/.test(location.protocol)) {
-      caches.keys().then(function (nomi) {
-        return Promise.all(nomi.map(function (n) { return caches.open(n).then(function (c) { return c.keys(); }); }));
-      }).then(function (liste) {
-        const quanti = liste.reduce(function (a, l) { return a + l.length; }, 0);
-        offline.textContent = P.schermo.offline_si.replace('{n}', quanti);
-      }).catch(function () { /* niente */ });
+    // Copia offline: quanti file ci sono su quanti ne servono (si aggiorna a ogni apertura con la rete)
+    const o = window.Offline;
+    if (!o || !o.attivo()) {
+      s.appendChild(el('p', 'nota', P.schermo.offline_no));
+    } else {
+      let testo = P.schermo.offline_controllo;
+      if (o.stato) {
+        const st = o.stato;
+        testo = (st.presenti === st.attesi ? P.schermo.offline_si : P.schermo.offline_parziale)
+          .replace('{n}', st.presenti).replace('{tot}', st.attesi);
+        if (st.mancanti.length) testo += ' ' + P.schermo.offline_mancano + ' ' + st.mancanti.slice(0, 6).join(', ') + (st.mancanti.length > 6 ? '…' : '');
+      }
+      s.appendChild(el('p', o.stato && o.stato.presenti === o.stato.attesi ? 'valore' : 'nota', testo));
+      s.appendChild(pulsante(P.schermo.offline_aggiorna, function () {
+        o.controlla().then(function () { if (aperto) disegna(); });
+        disegna();
+      }));
     }
 
     // Regia dal telefono: il codice compare solo qui

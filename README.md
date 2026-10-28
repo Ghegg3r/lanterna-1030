@@ -27,7 +27,10 @@ l'iPad prende la versione nuova (codice e testi passano sempre prima dalla rete)
 2. Tocca **Condividi → Aggiungi alla schermata Home**: si apre a tutto schermo, come un'app.
 3. Aprila una volta dall'icona e aspetta un minuto: scarica tutto (codice, font, carte e tutti gli audio).
    Nel pannello (3 secondi sull'angolo in alto a destra, poi PIN), sezione **Schermo**, controlla
-   "Pronto offline: N file in memoria".
+   "Pronto offline: 70 file su 70". Ogni volta che la apri con la rete, la copia offline si aggiorna da sola
+   (file nuovi o cambiati); se dice che ne mancano, tocca "Aggiorna la copia offline".
+   L'app aperta dall'icona ha una memoria sua, separata da Safari: imposta tutto (giocatori, codice di regia)
+   da lì dentro.
 4. Prova: metti l'iPad in **modalità aereo**, chiudi l'app e riaprila. Deve partire e suonare.
 5. Prima della serata: **Impostazioni → Schermo e luminosità → Blocco automatico: Mai**, volume alto,
    silenzioso spento. Lo schermo prova da solo a restare acceso, ma su iPad conviene non fidarsi.

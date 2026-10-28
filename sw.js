@@ -13,7 +13,7 @@
  */
 'use strict';
 
-const CACHE = 'tarocchi-maledetti-v1';
+const CACHE = 'tarocchi-maledetti-v2';
 const ATTESA_RETE = 3000;
 const PESANTI = /\.(png|jpe?g|webp|gif|svg|mp3|m4a|ogg|wav|woff2?)$/i;
 
@@ -56,6 +56,37 @@ self.addEventListener('activate', function (e) {
     return Promise.all(nomi.filter(function (n) { return n !== CACHE; }).map(function (n) { return caches.delete(n); }));
   }).then(function () { return self.clients.claim(); }));
 });
+
+// La pagina chiede: 'sincronizza' (con la rete: riprende i file cambiati o mancanti) o 'conta' (senza rete).
+// Risponde quanti file ci sono su quanti ne servono, e quali mancano. Così si aggiungono file
+// (audio, carte) senza dover cambiare questo service worker.
+self.addEventListener('message', function (e) {
+  const porta = e.ports && e.ports[0];
+  if (!porta) return;
+  const tipo = e.data && e.data.tipo;
+  e.waitUntil(controlla(tipo === 'sincronizza').then(function (r) { porta.postMessage(r); }));
+});
+
+function controlla(sincronizza) {
+  return caches.open(CACHE).then(function (cache) {
+    const file = tuttiIFile();
+    const mancanti = [];
+    let presenti = 0;
+    return Promise.all(file.map(function (f) {
+      const url = new URL(f, self.location).href;
+      const dallaRete = !sincronizza ? Promise.resolve(false)
+        // no-cache: il browser chiede al server se il file è cambiato e riscarica solo se serve
+        : fetch(url, { cache: 'no-cache' }).then(function (r) {
+          if (!r.ok || r.status !== 200) return false;
+          return cache.put(url, r).then(function () { return true; });
+        }).catch(function () { return false; });
+      return dallaRete.then(function (preso) {
+        if (preso) { presenti++; return; }
+        return cache.match(url, { ignoreVary: true }).then(function (c) { if (c) presenti++; else mancanti.push(f); });
+      });
+    })).then(function () { return { attesi: file.length, presenti: presenti, mancanti: mancanti.sort() }; });
+  });
+}
 
 self.addEventListener('fetch', function (e) {
   const req = e.request;

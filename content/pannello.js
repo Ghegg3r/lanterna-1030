@@ -80,7 +80,11 @@ window.CONTENT_PANNELLO = {
   "schermo": {
     "titolo": "Schermo",
     "intero": "Schermo intero",
-    "offline_si": "Pronto offline: {n} file in memoria.",
+    "offline_si": "Pronto offline: {n} file su {tot}.",
+    "offline_parziale": "Copia offline incompleta: {n} file su {tot}. Apri l'app con la rete e aspetta un minuto.",
+    "offline_mancano": "Mancano:",
+    "offline_controllo": "Controllo della copia offline in corso…",
+    "offline_aggiorna": "Aggiorna la copia offline",
     "offline_no": "Offline non attivo (serve aprire l'app da GitHub Pages, via https)."
   },
 
