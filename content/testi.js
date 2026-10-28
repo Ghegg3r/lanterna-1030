@@ -71,7 +71,13 @@ window.CONTENT_TESTI = {
       "Chi, quella notte, non ha detto di no?"
     ],
     "gettoni": "Ogni domanda allo spirito costa un gettone.",
-    "manifestazione": "Lo spirito vuole mostrarvi qualcosa."
+    "manifestazione": "Lo spirito vuole mostrarvi qualcosa.",
+    // Per riascoltare o rileggere la voce del blackout (voce 1)
+    "riascolta": "Riascolta lo spirito",
+    "ferma": "Ferma",
+    "rileggi": "Rileggi le sue parole",
+    "parole_titolo": "Le parole dello spirito",
+    "chiudi_parole": "Chiudi"
   },
 
   "tocchi": {

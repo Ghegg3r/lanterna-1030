@@ -194,6 +194,13 @@ Il gioco di carta è cambiato (`docs/SPEC-v4-sospetti.md`, `docs/STORIA.md` aggi
 
 **Provato**: test completo 76 su 76 (tasto 3 ignorato, Avanti senza sospetti ignorato, sospetti con la Stella, scagionato e frase, promemoria nella porta, titoli). Test SPEC-v4 17 su 17 (ricarica con lo stesso scagionato, correzione dal pannello, "Nessuno di loro" senza promemoria, biglietti con penombra di 5 minuti e timer che corre, Grimorio con fazioni e 8 fiamme). Console sul canale vero 9 su 9 (tocchi 0-2, tre carte, conferma a due tocchi, nessun colpevole visibile).
 
+### Atto 1: riascoltare e rileggere la voce del blackout (29/10/2026)
+Richiesta dell'utente. Nel riquadro degli obiettivi, sotto i gettoni, due pulsanti:
+- **"Riascolta lo spirito"**: comando nuovo `riascolta` (solo in atto 1). La voce 1 riparte dall'inizio, con i sottotitoli e la musica abbassata; il pulsante diventa "Ferma". Si ferma con la pausa e riprende dopo una ricarica (stato `riascolto`, azzerato a ogni ingresso nell'atto 1). Non è nella console del telefono: è per i giocatori.
+- **"Rileggi le sue parole"**: un foglio sopra il fascicolo con tutte le righe della voce 1, da scorrere, e "Chiudi".
+Testi in `testi.atto1` (riascolta, ferma, rileggi, parole_titolo, chiudi_parole). Provato: 10 su 10; test completo ancora 76 su 76.
+Corretto anche il service worker: con la rete chiede sempre al sito se i file sono cambiati (prima GitHub Pages lasciava la copia vecchia per 10 minuti). Cache v3.
+
 ## Criteri di accettazione (SPEC §10, SPEC-v2 §6) — esito al 23/10
 1. Doppio clic su `index.html`, niente errori in console: ✔. Unica eccezione voluta: "file non trovato" per ogni audio che manca (decisione dell'utente).
 2. Prova completa ×10 da avvio a titoli senza toccare il pannello dopo l'impostazione: ✔. Solo tastiera, 10,4 minuti reali, mezzanotte e voto arrivati da soli.

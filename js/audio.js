@@ -200,7 +200,10 @@
         if (sf === 'codice') des.ambiente = { id: 'atto1_loop' };
         break;
       case 'atto1':
-        des.ambiente = { id: 'atto1_loop' }; break;
+        des.ambiente = { id: 'atto1_loop' };
+        // i giocatori possono riascoltare la voce 1 (con i sottotitoli, la musica si abbassa da sola)
+        if (d.riascolto) des.voce = { chiave: d.riascolto.chiave, dal: d.riascolto.dal };
+        break;
       case 'risveglio':
         des.voce = { chiave: 'audio2', dal: 0 }; break;
       case 'giro':

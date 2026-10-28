@@ -77,6 +77,7 @@
       sospetti: null,      // { scelti: [3 arcani], tra: bool, scagionato: arcano|null, al: ms della fase }
       fiamme: { bianca: false, rossa: false, nera: false },
       introAtto1: false,   // true se all'atto 1 si è arrivati col codice: si mostrano le frasi dei piatti
+      riascolto: null,     // atto 1: { chiave: 'audio1', dal: ms della fase } se la voce 1 sta ripartendo
       documentiVisti: [],
       nominato: null,
       confessione: 'attesa',   // attesa | in_corso | fatta | saltata
@@ -129,6 +130,7 @@
       case 'atto1':
         if (!stato.orologio.attivo || trascorsoDi(stato.orologio) >= DURATA_OROLOGIO) avviaCrono(stato.orologio);
         stato.introAtto1 = !!opz.intro;
+        stato.riascolto = null;
         break;
       case 'mezzanotte':
         stato.tocchiAl = null;
@@ -326,6 +328,11 @@
     durataVoce: durataVoce,
     esito: esito,
     orologioAttivo: function () { return stato.orologio.attivo; },
+    // Atto 1: la voce 1 sta ripartendo per chi vuole riascoltarla?
+    riascoltoInCorso: function () {
+      const r = stato.riascolto;
+      return !!r && stato.fase === 'atto1' && trascorso('fase') - r.dal < durataVoce(r.chiave);
+    },
     portaAttiva: function () { return stato.porta.attivo; },
 
     carteInGioco: function () {

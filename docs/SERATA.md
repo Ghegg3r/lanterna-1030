@@ -32,7 +32,7 @@ Ogni pressione accende per un secondo un puntino quasi invisibile in basso a des
 | **Sollievo** → **Pesca** ("Una busta a testa…") | aspetta che abbiano le buste in mano | Partono da soli quando toccano "Le fiamme sono accese". |
 | — | **Avanti** quando cadi | Nero, la voce, le carte che si sollevano. Funziona anche da attesa o sollievo. |
 | **Codice** (orologio 23:10) | niente | Trovano 1386 nella tua busta e lo scrivono sullo schermo. |
-| **Atto 1**: orologio, fascicolo, obiettivi | **Avanti** = manifestazione (prima di ogni visione) | Si può premere quante volte vuoi. |
+| **Atto 1**: orologio, fascicolo, obiettivi | **Avanti** = manifestazione (prima di ogni visione) | Si può premere quante volte vuoi. Sotto gli obiettivi i giocatori trovano "Riascolta lo spirito" (la voce del blackout riparte, con i sottotitoli; "Ferma" la spegne) e "Rileggi le sue parole" (tutte le righe su un foglio). |
 | Pausa cena | **Indietro** per fermare, **Indietro** per riprendere | L'orologio si ferma. |
 | **Mezzanotte** (24:00, da sola) | 1. **Tocchi**: risposte giuste alle domande 1 e 2 del verbale, **0-2** (tasti 0-2 del PC, pannello o telefono) | Lo schermo dice quanti tocchi per 8 s, poi "I vostri sospetti." |
 | "I vostri sospetti." | 2. **I tre sospetti** della domanda 3: dal telefono (tocca tre carte, poi "Conferma", due volte) o dal pannello | Le tre carte si girano. Se c'è la Stella: "Il colpevole è tra loro", poi una delle altre due si spegne ("… disse di no"). Se non c'è: "Nessuno di loro" e si spengono tutte. Si dà una volta sola; il pannello può correggere. |

@@ -159,8 +159,22 @@
     T.atto1.obiettivi.forEach(function (o) { ol.appendChild(el('li', null, o)); });
     ob.appendChild(ol);
     ob.appendChild(el('p', 'gettoni', T.atto1.gettoni));
+
+    // La voce del blackout: si può riascoltare (con i sottotitoli) o rileggere con calma
+    const voce = el('div', 'voce-di-nuovo');
+    const riascolta = voce.appendChild(Schermo.pulsante(T.atto1.riascolta, function () { Regia.comando('riascolta', null, 'schermo'); }, 'rito'));
+    const parole = el('div', 'parole-spirito');
+    parole.hidden = true;
+    voce.appendChild(Schermo.pulsante(T.atto1.rileggi, function () { parole.hidden = false; parole.scrollTop = 0; }, 'rito'));
+    ob.appendChild(voce);
     tavolo.appendChild(ob);
     box.appendChild(tavolo);
+
+    const foglio = parole.appendChild(el('div', 'foglio-parole'));
+    foglio.appendChild(el('h2', null, T.atto1.parole_titolo));
+    T.audio1.righe.forEach(function (r) { foglio.appendChild(el('p', 'voce', typeof r === 'string' ? r : r.testo)); });
+    foglio.appendChild(Schermo.pulsante(T.atto1.chiudi_parole, function () { parole.hidden = true; }, 'rito'));
+    box.appendChild(parole);
 
     // Le due frasi dopo il codice, grandi, sopra a tutto
     const intro = el('div', 'intro-atto1');
@@ -169,7 +183,7 @@
     box.appendChild(intro);
 
     scena.appendChild(box);
-    rif = { box: box, orologio: orologio, giusta: giusta, piatti: piatti, passo: null };
+    rif = { box: box, orologio: orologio, giusta: giusta, piatti: piatti, riascolta: riascolta, passo: null };
   }
 
   function disegna(fase, scena) {
@@ -189,6 +203,8 @@
     }
     const ora = Schermo.hhmm(Stato.oraScena());
     if (rif.orologio.textContent !== ora) rif.orologio.textContent = ora;
+    const etichetta = Stato.riascoltoInCorso() ? T.atto1.ferma : T.atto1.riascolta;
+    if (rif.riascolta.textContent !== etichetta) rif.riascolta.textContent = etichetta;
   }
 
   window.Fascicolo = { disegna: disegna, aggiorna: aggiorna, crea: crea, carta: carta };

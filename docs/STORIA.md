@@ -59,7 +59,7 @@ Lucia non ha mai sospettato Silvia: era quella che l'aveva consolata. Sapeva sol
 
 **I sospetti di mezzanotte.** L'atto 1 non deve dare un nome sicuro: il gruppo indica tre arcani sospetti. Le piste naturali sono Stella (le stelle), Papessa e Carro (l'acqua). Se la Stella è tra i tre, lo schermo lo conferma e scagiona uno degli altri due.
 
-**Elemento:** Aria (Spade). **Candela:** bianca. **Ragazza del 1986:** Silvia M., femmina, 3° posto a sinistra di Lucia. **Compagno di patto:** Claudio P. (Carro). **Parola:** Polaroid. **Parola rubata:** Cassetta (dell'Eremita).
+**Elemento:** Aria (Spade). **Candela:** bianca. **Ragazza del 1986:** Silvia M., femmina, 3° posto a sinistra di Lucia. **Compagno di patto:** Claudio P. (Carro). **Parola:** Polaroid. **Parole rubate:** Cassetta e Swatch (tutto il patto Eremita–Papessa): si spaccia per l'Eremita e supera qualunque prova della parola.
 
 ## 6. Le false piste (tutti hanno qualcosa da nascondere)
 | Arcano | Cosa nasconde | Perché sembra colpevole | Perché non lo è |

@@ -196,6 +196,14 @@
       return ok();
     },
 
+    // Atto 1: fa ripartire la voce 1 dall'inizio, o la ferma se sta suonando.
+    riascolta: function () {
+      if (fase() !== 'atto1') return no('fase');
+      if (Stato.riascoltoInCorso()) { Stato.imposta({ riascolto: null }); return ok({ riascolto: false }); }
+      Stato.imposta({ riascolto: { chiave: 'audio1', dal: Stato.trascorso('fase') } });
+      return ok({ riascolto: true });
+    },
+
     // --- Pannello -------------------------------------------------------------
     colpevole: function (id) {
       if (C.portanti.indexOf(id) < 0) return no('valore');
