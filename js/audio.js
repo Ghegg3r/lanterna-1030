@@ -254,7 +254,8 @@
       if (info && info.durata && offset * 1000 >= info.durata) { inOnda[nome] = { id: id, l: null }; return; }
     }
     const l = canali[nome][0] === (ora && ora.l) ? canali[nome][1] : canali[nome][0];
-    suonaTraccia(l, id, { offset: offset, fade: offset ? 1 : fadeS });
+    // I loop entrano con la dissolvenza lunga; un brano che suona una volta (il sollievo) entra subito.
+    suonaTraccia(l, id, { offset: offset, fade: offset ? 1 : (tr.loop ? fadeS : 0.2) });
     inOnda[nome] = { id: id, l: l };
   }
 

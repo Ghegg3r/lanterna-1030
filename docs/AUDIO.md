@@ -15,7 +15,14 @@ I volumi tra una traccia e l'altra si bilanciano in `content/audio.js`.
 
 ---
 
-## 1. Musiche con Suno
+## 1. Musiche con Suno — FATTE (28/10)
+Fatte dall'utente con Suno, poi preparate con ffmpeg:
+- **Loop** (attesa, atto 1, pausa cena, porta A, porta B, battito): tenuta la parte piena del brano, senza l'introduzione che cresce e senza il finale; gli ultimi 4 s sono incrociati con l'inizio (dissolvenze a potenza costante), così il punto in cui ricomincia non si sente. Volume uniformato a −20 LUFS.
+  Tagli: attesa 2 s → fine−6 s; pausa 2 s → fine−6 s; atto 1 14 → 77,5 s; porta B 7 → 158 s; battito 12 → 100 s; porta A 7 → 63 s, togliendo il silenzio da 29,8 a 32,1 s.
+- **Sollievo**: i primi 8 s del brano (l'apertura calda), poi l'incrinatura è costruita a mano: dall'ottavo secondo il suono rallenta e cala come un nastro che si ferma, ondeggia stonato e sfuma entro 15 s. Cade quando lo schermo passa a "Una busta a testa".
+- Il battito di Suno ha preso il posto di quello di Freesound.
+
+### Prompt originali
 Per tutte: **Instrumental** acceso, niente voce. Stile comune da tenere in ogni prompt:
 *1980s horror film score, analog synth, dark, slow*. Se esce un brano con un finale netto,
 per i loop si tiene un pezzo centrale di 2-3 minuti (Audacity: taglia, dissolvenza di 1 s ai bordi).
