@@ -20,6 +20,8 @@
     const box = el('div', 'sigillo');
     box.appendChild(el('h2', 'domanda voce', T.sigillo.titolo));
     const griglia = el('div', 'griglia-sigillo');
+    // due file uguali: 4+4 con 8 giocatori, 6+6 con 12
+    griglia.style.setProperty('--colonne', Math.ceil(Stato.carteInGioco().length / 2));
     const conferma = el('p', 'conferma-sigillo voce');
     let scelto = null, timer = null;
     Stato.carteInGioco().forEach(function (id) {

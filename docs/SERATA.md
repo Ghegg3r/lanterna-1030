@@ -6,7 +6,7 @@
 - [ ] Apri l'app (PC: doppio clic su `index.html`; iPad: icona sulla schermata Home).
 - [ ] Pannello: **Ctrl+Shift+M** (iPad: 3 secondi sull'angolo in alto a destra) → PIN **3013**.
   - [ ] **Colpevole**: "impostato (nascosto)". Tocca "Mostra per 5 secondi" solo se nessuno guarda.
-  - [ ] **Giocatori**: il numero vero di stasera (9-12).
+  - [ ] **Giocatori**: il numero vero di stasera (8-12; parte da 8).
   - [ ] **Prova ×10: spento** (il pulsante deve dire "Tempo ×10: spento"; in alto a sinistra niente scritta rossa).
   - [ ] **Audio → Controlla i file**: tutti "c'è". Prova una voce con ▶ per sentire il volume.
   - [ ] Solo iPad: **Schermo** deve dire "Pronto offline: 70 file su 70" (aprila con la rete e aspetta un minuto; se ne mancano, "Aggiorna la copia offline").

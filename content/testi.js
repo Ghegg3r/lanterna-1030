@@ -45,7 +45,7 @@ window.CONTENT_TESTI = {
       { "testo": "Proprio come loro, nel 1986." },
       { "testo": "Lo sentite? Qualcosa si sta svegliando dentro le buste che stringete." },
       { "testo": "Siamo noi. Abbiamo aspettato quarant'anni." },
-      { "testo": "Lui ha guardato. E chi guarda la Morte, stanotte, cade." },
+      { "testo": "Lui l'ha pescata. E chi pesca la Morte, stanotte, cade." },
       { "testo": "Non aprite le vostre buste. Non ancora." },
       { "testo": "Aprite soltanto la sua: lui non ne ha più bisogno." },
       { "testo": "La Morte è caduta, ma non se n'è andata. Resterà con voi fino all'alba." },

@@ -201,6 +201,13 @@ Richiesta dell'utente. Nel riquadro degli obiettivi, sotto i gettoni, due pulsan
 Testi in `testi.atto1` (riascolta, ferma, rileggi, parole_titolo, chiudi_parole). Provato: 10 su 10; test completo ancora 76 su 76.
 Corretto anche il service worker: con la rete chiede sempre al sito se i file sono cambiati (prima GitHub Pages lasciava la copia vecchia per 10 minuti). Cache v3.
 
+### Per venerdì: 8 giocatori e voce 1 (29/10/2026)
+- `config.giocatori_min` = 8 (dall'utente) e nuovo `config.giocatori_default` = 8: lo stato parte da 8 giocatori (anche dopo un reset). Con 8 le carte in gioco sono gli 8 portanti, nessuna esca.
+- Provato con 8 (13 su 13): Grimorio con 8 portanti + Morte e 8 fiamme; pannello con 8-12 e 8 attivo; 8 carte nella possessione e a mezzanotte; sospetti e sigillo rifiutano le esche; console del telefono con 8 carte per i sospetti e per il sigillo. Non esiste un calcolo della maggioranza nell'app: il voto si fa a voce al tavolo e lo schermo verifica solo la carta girata.
+- Griglia del sigillo: ora due file uguali in base alle carte (4+4 con 8, 6+6 con 12); prima con 8 veniva 6+2.
+- Voce 1: riga cambiata dall'utente ("Lui l'ha pescata. E chi pesca la Morte, stanotte, cade."); rigenerata con `strumenti/genera-voci.mjs audio1` (stessa voce, seme ed effetto), aggiornati i tempi in `content/tempi-voci.js` (13 righe, 70 s). Le altre voci non sono cambiate.
+- Test completo 76 su 76, console pulita. `SERATA.md`: giocatori 8-12.
+
 ## Criteri di accettazione (SPEC §10, SPEC-v2 §6) — esito al 23/10
 1. Doppio clic su `index.html`, niente errori in console: ✔. Unica eccezione voluta: "file non trovato" per ogni audio che manca (decisione dell'utente).
 2. Prova completa ×10 da avvio a titoli senza toccare il pannello dopo l'impostazione: ✔. Solo tastiera, 10,4 minuti reali, mezzanotte e voto arrivati da soli.

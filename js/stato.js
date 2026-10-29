@@ -71,7 +71,7 @@
       pausa: false,
       velo: false,
       colpevole: (S && A[S.colpevole]) ? S.colpevole : null,
-      giocatori: C.giocatori_max,
+      giocatori: C.giocatori_default || C.giocatori_max,
       tocchi: null,
       tocchiAl: null,      // trascorso della fase quando sono stati inseriti i tocchi (solo a mezzanotte)
       sospetti: null,      // { scelti: [3 arcani], tra: bool, scagionato: arcano|null, al: ms della fase }

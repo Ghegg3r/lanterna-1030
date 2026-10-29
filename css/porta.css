@@ -152,7 +152,7 @@
 .cassetto .fascicolo { flex: 1; min-height: 0; }
 
 /* --- Sigillo: la griglia delle carte --- */
-.griglia-sigillo { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2.5vh 1.5vw; width: min(94vw, 170vh); }
+.griglia-sigillo { display: grid; grid-template-columns: repeat(var(--colonne, 6), minmax(0, 1fr)); gap: 2.5vh 1.5vw; width: min(94vw, calc(var(--colonne, 6) * 28vh)); }
 .carta-sigillo {
   display: flex; flex-direction: column; align-items: center; gap: 0.8vh;
   background: none; border: none; padding: 0; color: var(--avorio);

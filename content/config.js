@@ -52,8 +52,9 @@ window.CONTENT_CONFIG = {
   "portanti": ["mondo", "stella", "eremita", "torre", "carro", "amanti", "giustizia", "papessa"],
 
   "carte_extra_in_ordine": ["diavolo", "luna", "matto", "sole"],
-  "giocatori_min": 9,
+  "giocatori_min": 8,
   "giocatori_max": 12,
+  "giocatori_default": 8,   // all'avvio e dopo un reset; si cambia dal pannello
 
   "chiave_storage": "tm_v1_scena",
 
